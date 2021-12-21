@@ -20,9 +20,7 @@ namespace BlueTeamGroupProject
 
 
 
-            // Below is an example class
-            Class1 Example = new Class1();
-            Example.num = 5;
+            
         }
     }
 }
