@@ -17,6 +17,12 @@ namespace BlueTeamGroupProject
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+
+
+            // Below is an example class
+            Class1 Example = new Class1();
+            Example.num = 5;
         }
     }
 }
