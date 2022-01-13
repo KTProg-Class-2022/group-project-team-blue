@@ -15,6 +15,7 @@ namespace BlueTeamGroupProject
         public Form1()
         {
             InitializeComponent();
+            
         }
     }
 }

@@ -20,15 +20,15 @@ namespace BlueTeamGroupProject
             }
         }
 
-        public string Item
+        public string ItemName
         {
             get
             {
-                return Item;
+                return ItemName;
             }
             set
             {
-                Item = value;
+                ItemName = value;
             }
         }
     }

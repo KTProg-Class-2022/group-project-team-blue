@@ -15,7 +15,7 @@ namespace BlueTeamGroupProject
             Dungeon,
             Combat
         }
-        
+
         private List<Location> Exits;
         private RoomType _category;
         public RoomType Category
@@ -39,12 +39,13 @@ namespace BlueTeamGroupProject
             _itemlist = items;
         }
 
-        public void addExit(Location place) {
+        public void addExit(Location place)
+        {
             Exits.Append(place);
         }
         public void removeExit(Location.Direction Placement, string Name)
         {
-            foreach(Location Exit in Exits)
+            foreach (Location Exit in Exits)
             {
                 if (Exit.Dir == Placement && Exit.ID == Name)
                 {
