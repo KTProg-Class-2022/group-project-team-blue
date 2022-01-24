@@ -29,33 +29,46 @@ namespace BlueTeamGroupProject
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.myConsole = new System.Windows.Forms.RichTextBox();
+            this.myScreen = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.myScreen)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // myConsole
             // 
-            this.button1.Location = new System.Drawing.Point(462, 128);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.myConsole.Location = new System.Drawing.Point(12, 309);
+            this.myConsole.Name = "myConsole";
+            this.myConsole.Size = new System.Drawing.Size(776, 129);
+            this.myConsole.TabIndex = 0;
+            this.myConsole.Text = "this is where you type stuff";
+            // 
+            // myScreen
+            // 
+            this.myScreen.BackgroundImage = global::BlueTeamGroupProject.Properties.Resources.UIBase;
+            this.myScreen.Location = new System.Drawing.Point(12, 12);
+            this.myScreen.Name = "myScreen";
+            this.myScreen.Size = new System.Drawing.Size(776, 291);
+            this.myScreen.TabIndex = 1;
+            this.myScreen.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.myScreen);
+            this.Controls.Add(this.myConsole);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.myScreen)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox myConsole;
+        private System.Windows.Forms.PictureBox myScreen;
     }
 }
 
