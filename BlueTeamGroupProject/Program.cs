@@ -19,8 +19,8 @@ namespace BlueTeamGroupProject
             Application.Run(new Form1());
             Room basic;
 
-
-
+            Inventory player = new Inventory();
+            player.Inventory += "Fist";
             
         }
     }
