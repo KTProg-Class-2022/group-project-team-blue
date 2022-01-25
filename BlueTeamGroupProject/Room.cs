@@ -38,7 +38,10 @@ namespace BlueTeamGroupProject
             _category = Type;
             _itemlist = items;
         }
+        public void addItem()
+        {
 
+        }
         public void addExit(Location place)
         {
             Exits.Append(place);
