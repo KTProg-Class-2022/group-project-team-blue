@@ -20,7 +20,6 @@ namespace BlueTeamGroupProject
             Room basic;
 
             Inventory player = new Inventory();
-            player.Inventory += "Fist";
             
         }
     }

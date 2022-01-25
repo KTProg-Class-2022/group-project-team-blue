@@ -31,5 +31,11 @@ namespace BlueTeamGroupProject
                 ItemName = value;
             }
         }
+    
+        public Item(string name)
+        {
+            this.ItemName = name;
+        }
+    
     }
 }

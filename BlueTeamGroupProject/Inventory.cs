@@ -8,19 +8,23 @@ namespace BlueTeamGroupProject
 {
     class Inventory
     {
-        public Array[] itemProperties = { };
-        public Item[] itmeList = { };
-
-        public string Inv(string name)
+        public int[] itemProperties = {1 };
+        public Item[] itmeList = {new Item("fist") };
+        
+        public void inventory()
         {
-            
-
-
-
-            return 0;
+           
+        }
+        public void add(string N, int I)
+        {
+            itmeList.Append(new Item(N));
+            itemProperties.Append(I);
         }
 
-
-
+        public void remove(string N, int I)
+        {
+            itmeList.ElementAt(N) = null;
+            itemProperties.ElementAt(I) = 0;
+        }
     }
 }
