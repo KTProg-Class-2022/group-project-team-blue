@@ -23,7 +23,7 @@ namespace BlueTeamGroupProject
 
         public void remove(string N, int I)
         {
-            itmeList.Contains(N) = "";
+            
         }
     }
 }

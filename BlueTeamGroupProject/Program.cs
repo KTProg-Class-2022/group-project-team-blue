@@ -17,7 +17,7 @@ namespace BlueTeamGroupProject
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-            Room basic;
+            Room basic = new Room();
 
             Inventory player = new Inventory();
             
