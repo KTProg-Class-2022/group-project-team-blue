@@ -50,6 +50,7 @@ namespace BlueTeamGroupProject
             this.myScreen.Size = new System.Drawing.Size(776, 291);
             this.myScreen.TabIndex = 1;
             this.myScreen.TabStop = false;
+            this.myScreen.Click += new System.EventHandler(this.myScreen_Click);
             // 
             // Form1
             // 

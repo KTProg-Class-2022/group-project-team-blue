@@ -8,28 +8,34 @@ namespace BlueTeamGroupProject
 {
     class Weapon
     {
+        private int _attack;
         public int Attack
         {
             get
             {
-                return Attack;
+                return _attack;
             }
             set
             {
-                Attack = value;
+                _attack = value;
             }
         }
-
-        public string Item
+        private string _name;
+        public string Name
         {
             get
             {
-                return Item;
+                return _name;
             }
             set
             {
-                Item = value;
+                _name = value;
             }
+        }
+        public Weapon(string name, int attack)
+        {
+            _name = name;
+            _attack = attack;
         }
     }
 }
