@@ -10,37 +10,41 @@ namespace BlueTeamGroupProject
     {
         private string _name = "Undefined";
         private List<int> IDs;
-        private List<object> Items = new List<object>();
+        private List<object> Content = new List<object>();
         
         public string Name
         {
             get { return _name; }
             set { _name = value; }
         }
-        public Array[] itemProperties = { };
-        public Item[] itmeList = { };
+        
 
         public Inventory(string name)
         {
             this._name = name;
         }
-        public void addItem(object item)
+        public void addStuff(object item)
         {
-            Items.Add(item);
+            Content.Add(item);
         }
-        public List<object> getItems()
+        public List<object> getStuff()
         {
-            return (Items);
+            return (Content);
         }
         public string getValues()
         {
             string returnString = "";
-            foreach(object value in Items)
+            foreach(object value in Content)
             {
                 if(value is Weapon)
                 {
                     Weapon valWep = value as Weapon;
-                    returnString+= valWep.Name;
+                    returnString+= "WEAPON: "+ valWep.Name + "\n";
+                }
+                if (value is Item)
+                {
+                    Item valItem = value as Item;
+                    returnString += "ITEM: " + valItem.Name + "\n";
                 }
                 
             }

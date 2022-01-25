@@ -22,7 +22,9 @@ namespace BlueTeamGroupProject
         {
             Inventory testInv = new Inventory("TestInv");
             Weapon testWeapon = new Weapon("Sword", 99);
-            testInv.addItem(testWeapon);
+            Item testItem = new Item("Glass", new string[]{ "Attack" }, new string[]{ "E-5HEALTH"});
+            testInv.addStuff(testItem);
+            testInv.addStuff(testWeapon);
             myConsole.Text = testInv.getValues();
         }
     }
