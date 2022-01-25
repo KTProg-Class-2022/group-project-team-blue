@@ -36,9 +36,9 @@ namespace BlueTeamGroupProject
             // 
             // myConsole
             // 
-            this.myConsole.Location = new System.Drawing.Point(12, 309);
+            this.myConsole.Location = new System.Drawing.Point(12, 330);
             this.myConsole.Name = "myConsole";
-            this.myConsole.Size = new System.Drawing.Size(776, 129);
+            this.myConsole.Size = new System.Drawing.Size(796, 147);
             this.myConsole.TabIndex = 0;
             this.myConsole.Text = "this is where you type stuff";
             // 
@@ -47,7 +47,7 @@ namespace BlueTeamGroupProject
             this.myScreen.BackgroundImage = global::BlueTeamGroupProject.Properties.Resources.UIBase;
             this.myScreen.Location = new System.Drawing.Point(12, 12);
             this.myScreen.Name = "myScreen";
-            this.myScreen.Size = new System.Drawing.Size(776, 291);
+            this.myScreen.Size = new System.Drawing.Size(796, 312);
             this.myScreen.TabIndex = 1;
             this.myScreen.TabStop = false;
             // 
@@ -55,7 +55,8 @@ namespace BlueTeamGroupProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackgroundImage = global::BlueTeamGroupProject.Properties.Resources.borderBeta;
+            this.ClientSize = new System.Drawing.Size(820, 489);
             this.Controls.Add(this.myScreen);
             this.Controls.Add(this.myConsole);
             this.Name = "Form1";
