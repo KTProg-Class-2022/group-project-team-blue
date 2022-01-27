@@ -25,7 +25,28 @@ namespace BlueTeamGroupProject
             Item testItem = new Item("Glass", new string[]{ "Attack" }, new string[]{ "E-5HEALTH"});
             testInv.addStuff(testItem);
             testInv.addStuff(testWeapon);
-            myConsole.Text = testInv.getValues();
+            InvBox.Text = testInv.getValues();
+            myConsole.Text = "There is a Weapon on the ground. Will you Pick it up? (type 'GRAB' to pick it up)\n";
+            string grab = myConsole.Text;
+            if (myConsole.Text.Contains("yes"))
+            {
+                Weapon GODSTICK = new Weapon("Holy Stick of Sticks!!!!", 1);
+                testInv.addStuff(GODSTICK);
+            }
+            else
+            {
+
+            }
+        }
+
+        private void itemPickup(KeyEventArgs e)
+        {
+
+        }
+
+        private void myConsole_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
