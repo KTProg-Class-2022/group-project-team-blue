@@ -8,22 +8,50 @@ namespace BlueTeamGroupProject
 {
     class Inventory
     {
-        public int[] itemProperties = {1 };
-        public Item[] itmeList = {new Item("fist") };
+        private string _name = "Undefined";
+        private List<int> IDs;
+        private List<object> Content = new List<object>();
         
-        public void inventory()
+        public string Name
         {
-           
+            get { return _name; }
+            set { _name = value; }
         }
-        public void add(string N, int I)
+        
+
+        public Inventory(string name)
         {
-            itmeList.Append(new Item(N));
-            itemProperties.Append(I);
+            this._name = name;
+        }
+        public void addStuff(object item)
+        {
+            Content.Add(item);
+        }
+        public List<object> getStuff()
+        {
+            return (Content);
+        }
+        public string getValues()
+        {
+            string returnString = "";
+            foreach(object value in Content)
+            {
+                if(value is Weapon)
+                {
+                    Weapon valWep = value as Weapon;
+                    returnString+= "WEAPON: "+ valWep.Name + "\n";
+                }
+                if (value is Item)
+                {
+                    Item valItem = value as Item;
+                    returnString += "ITEM: " + valItem.Name + "\n";
+                }
+                
+            }
+            return (returnString);
         }
 
-        public void remove(string N, int I)
-        {
-            
-        }
+
+
     }
 }

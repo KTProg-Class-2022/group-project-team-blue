@@ -17,5 +17,15 @@ namespace BlueTeamGroupProject
             InitializeComponent();
             
         }
+
+        private void myScreen_Click(object sender, EventArgs e)
+        {
+            Inventory testInv = new Inventory("TestInv");
+            Weapon testWeapon = new Weapon("Sword", 99);
+            Item testItem = new Item("Glass", new string[]{ "Attack" }, new string[]{ "E-5HEALTH"});
+            testInv.addStuff(testItem);
+            testInv.addStuff(testWeapon);
+            myConsole.Text = testInv.getValues();
+        }
     }
 }

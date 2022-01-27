@@ -8,34 +8,33 @@ namespace BlueTeamGroupProject
 {
     class Item
     {
-        public int Attack
+        private string _name;
+        public string Name
         {
-            get
+            get { return _name; }
+            set { _name = value; }
+        }
+        Dictionary<string, string> actions = new Dictionary<string, string>();
+        
+        public Item(string name, string[] Commands, string[] Results)
+        {
+            _name = name;
+            if (Commands.Length != Results.Length)
             {
-                return Attack;
+                Console.WriteLine("The Results and Commands are unbalanced");
             }
-            set
+            else
             {
-                Attack = value;
+                for(int i = 0; i < Commands.Length; i++)
+                {
+                    actions[Commands[i]] = Results[i];
+                }
             }
+        }
+        public void addAction(string Command, string Result)
+        {
+            actions[Command] = Result;
         }
 
-        public string ItemName
-        {
-            get
-            {
-                return ItemName;
-            }
-            set
-            {
-                ItemName = value;
-            }
-        }
-    
-        public Item(string name)
-        {
-            this.ItemName = name;
-        }
-    
     }
 }
