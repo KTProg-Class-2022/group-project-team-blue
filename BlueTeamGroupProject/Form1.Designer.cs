@@ -32,6 +32,7 @@ namespace BlueTeamGroupProject
             this.myConsole = new System.Windows.Forms.RichTextBox();
             this.myScreen = new System.Windows.Forms.PictureBox();
             this.myInventory = new System.Windows.Forms.PictureBox();
+            this.myInput = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.myScreen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myInventory)).BeginInit();
             this.SuspendLayout();
@@ -40,9 +41,9 @@ namespace BlueTeamGroupProject
             // 
             this.myConsole.Location = new System.Drawing.Point(12, 330);
             this.myConsole.Name = "myConsole";
-            this.myConsole.Size = new System.Drawing.Size(796, 147);
+            this.myConsole.Size = new System.Drawing.Size(796, 119);
             this.myConsole.TabIndex = 0;
-            this.myConsole.Text = "this is where you type stuff";
+            this.myConsole.Text = "This is where stuff comes out";
             // 
             // myScreen
             // 
@@ -63,12 +64,21 @@ namespace BlueTeamGroupProject
             this.myInventory.TabIndex = 2;
             this.myInventory.TabStop = false;
             // 
+            // myInput
+            // 
+            this.myInput.Location = new System.Drawing.Point(12, 456);
+            this.myInput.Name = "myInput";
+            this.myInput.Size = new System.Drawing.Size(796, 21);
+            this.myInput.TabIndex = 3;
+            this.myInput.Text = "This is where you type stuff";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::BlueTeamGroupProject.Properties.Resources.borderBeta1;
             this.ClientSize = new System.Drawing.Size(820, 489);
+            this.Controls.Add(this.myInput);
             this.Controls.Add(this.myInventory);
             this.Controls.Add(this.myScreen);
             this.Controls.Add(this.myConsole);
@@ -85,6 +95,7 @@ namespace BlueTeamGroupProject
         private System.Windows.Forms.RichTextBox myConsole;
         private System.Windows.Forms.PictureBox myScreen;
         private System.Windows.Forms.PictureBox myInventory;
+        private System.Windows.Forms.RichTextBox myInput;
     }
 }
 
