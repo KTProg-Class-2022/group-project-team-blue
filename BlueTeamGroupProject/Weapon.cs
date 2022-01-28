@@ -8,7 +8,7 @@ namespace BlueTeamGroupProject
 {
     class Weapon
     {
-        public Dictionary<string, Func<System.Object>> actionList = new Dictionary<string, Func<System.Object>>();
+        
         
         private int _attack;
         public int Attack
@@ -38,12 +38,9 @@ namespace BlueTeamGroupProject
         {
             _name = name;
             _attack = attack;
-            actionList.Add("Test", test1);
+            
         }
 
-        private System.Object test1()
-        {
-            return (false);
-        }
+        
     }
 }

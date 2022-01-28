@@ -32,17 +32,20 @@ namespace BlueTeamGroupProject
             this.myConsole = new System.Windows.Forms.RichTextBox();
             this.myScreen = new System.Windows.Forms.PictureBox();
             this.myInventory = new System.Windows.Forms.PictureBox();
+            this.outputConsole = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.myScreen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myInventory)).BeginInit();
             this.SuspendLayout();
             // 
             // myConsole
             // 
-            this.myConsole.Location = new System.Drawing.Point(12, 330);
+            this.myConsole.Location = new System.Drawing.Point(12, 448);
             this.myConsole.Name = "myConsole";
-            this.myConsole.Size = new System.Drawing.Size(796, 147);
+            this.myConsole.Size = new System.Drawing.Size(796, 29);
             this.myConsole.TabIndex = 0;
-            this.myConsole.Text = "this is where you type stuff";
+            this.myConsole.Text = "";
+            this.myConsole.TextChanged += new System.EventHandler(this.myConsole_TextChanged);
+            this.myConsole.KeyDown += new System.Windows.Forms.KeyEventHandler(this.myConsole_KeyDown);
             // 
             // myScreen
             // 
@@ -63,12 +66,23 @@ namespace BlueTeamGroupProject
             this.myInventory.TabIndex = 2;
             this.myInventory.TabStop = false;
             // 
+            // outputConsole
+            // 
+            this.outputConsole.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.outputConsole.Location = new System.Drawing.Point(12, 330);
+            this.outputConsole.Name = "outputConsole";
+            this.outputConsole.ReadOnly = true;
+            this.outputConsole.Size = new System.Drawing.Size(796, 112);
+            this.outputConsole.TabIndex = 3;
+            this.outputConsole.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::BlueTeamGroupProject.Properties.Resources.borderBeta1;
             this.ClientSize = new System.Drawing.Size(820, 489);
+            this.Controls.Add(this.outputConsole);
             this.Controls.Add(this.myInventory);
             this.Controls.Add(this.myScreen);
             this.Controls.Add(this.myConsole);
@@ -85,6 +99,7 @@ namespace BlueTeamGroupProject
         private System.Windows.Forms.RichTextBox myConsole;
         private System.Windows.Forms.PictureBox myScreen;
         private System.Windows.Forms.PictureBox myInventory;
+        private System.Windows.Forms.RichTextBox outputConsole;
     }
 }
 
