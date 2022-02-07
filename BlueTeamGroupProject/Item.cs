@@ -14,11 +14,20 @@ namespace BlueTeamGroupProject
             get { return _name; }
             set { _name = value; }
         }
+
+        private string _desc;
+        public string Desc
+        {
+            get { return _desc; }
+            set { _name = _desc; }
+        }
+        
         Dictionary<string, string> actions = new Dictionary<string, string>();
         
-        public Item(string name, string[] Commands, string[] Results)
+        public Item(string name, string desc, string[] Commands, string[] Results)
         {
             _name = name;
+            _desc = desc;
             if (Commands.Length != Results.Length)
             {
                 Console.WriteLine("The Results and Commands are unbalanced");

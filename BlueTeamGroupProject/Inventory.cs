@@ -8,7 +8,7 @@ namespace BlueTeamGroupProject
 {
     class Inventory
     {
-        private string _name = "Undefined";
+        private string _name;
         private List<int> IDs;
         private List<object> Content = new List<object>();
         
@@ -44,7 +44,7 @@ namespace BlueTeamGroupProject
                 if (value is Item)
                 {
                     Item valItem = value as Item;
-                    returnString += "ITEM: " + valItem.Name + "\n";
+                    returnString += "ITEM: " + valItem.Name + " (" + valItem.Desc + ")\n";
                 }
                 
             }
