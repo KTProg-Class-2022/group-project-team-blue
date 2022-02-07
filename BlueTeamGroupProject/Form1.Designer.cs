@@ -32,6 +32,7 @@ namespace BlueTeamGroupProject
             this.myConsole = new System.Windows.Forms.RichTextBox();
             this.myScreen = new System.Windows.Forms.PictureBox();
             this.myInventory = new System.Windows.Forms.PictureBox();
+            this.InvBox = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.myScreen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myInventory)).BeginInit();
             this.SuspendLayout();
@@ -44,6 +45,7 @@ namespace BlueTeamGroupProject
             this.myConsole.TabIndex = 0;
             this.myConsole.Text = "this is where you type stuff";
             this.myConsole.TextChanged += new System.EventHandler(this.myConsole_TextChanged);
+            this.myConsole.KeyDown += new System.Windows.Forms.KeyEventHandler(this.myConsole_KeyDown);
             // 
             // myScreen
             // 
@@ -64,12 +66,21 @@ namespace BlueTeamGroupProject
             this.myInventory.TabIndex = 2;
             this.myInventory.TabStop = false;
             // 
+            // InvBox
+            // 
+            this.InvBox.Location = new System.Drawing.Point(573, 27);
+            this.InvBox.Name = "InvBox";
+            this.InvBox.Size = new System.Drawing.Size(217, 282);
+            this.InvBox.TabIndex = 3;
+            this.InvBox.Text = "this is where you type stuff";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::BlueTeamGroupProject.Properties.Resources.borderBeta1;
             this.ClientSize = new System.Drawing.Size(820, 489);
+            this.Controls.Add(this.InvBox);
             this.Controls.Add(this.myInventory);
             this.Controls.Add(this.myScreen);
             this.Controls.Add(this.myConsole);
@@ -86,6 +97,7 @@ namespace BlueTeamGroupProject
         private System.Windows.Forms.RichTextBox myConsole;
         private System.Windows.Forms.PictureBox myScreen;
         private System.Windows.Forms.PictureBox myInventory;
+        private System.Windows.Forms.RichTextBox InvBox;
     }
 }
 
