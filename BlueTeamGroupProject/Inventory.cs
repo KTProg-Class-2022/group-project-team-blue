@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlueTeamGroupProject
 {
-    class Inventory
+    class Inventory : Interactable
     {
         private string _name = "Undefined";
         private List<int> IDs;

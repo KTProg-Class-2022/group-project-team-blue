@@ -8,9 +8,33 @@ namespace BlueTeamGroupProject
 {
     class Interactable
     {
-       public int action()
+        private Dictionary<string, Result[]> _actions = new Dictionary<string, Result[]>();
+        public Dictionary<string, Result[]> actions
         {
-            return (1);
+            get { return _actions; }
+            set { _actions = value; }
+        }
+
+        public Dictionary<string, Result[]> getActions()
+        {
+            return (actions);
+        }
+        public void setActions(Dictionary<string, Result[]> newActions)
+        {
+            _actions.Concat(newActions);
+        }
+        public void deleteAction(Dictionary<string, Result[]> toDelete)
+        {
+            foreach( KeyValuePair<string, Result[]> value in _actions)
+            {
+                if (toDelete.ContainsKey(value.Key))
+                {
+                    if(toDelete[value.Key] == value.Value)
+                    {
+                        _actions.Remove(value.Key);
+                    }
+                }
+            }
         }
     }
 }

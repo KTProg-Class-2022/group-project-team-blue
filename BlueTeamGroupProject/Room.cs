@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlueTeamGroupProject
 {
-    class Room
+    class Room : Interactable
     {
         public enum RoomType
         {
@@ -16,7 +16,7 @@ namespace BlueTeamGroupProject
             Combat
         }
 
-        private List<Location> Exits;
+        private List<Tuple<Location.Direction, Room>> Exits = new List<Tuple<Location.Direction, Room>>();
         private RoomType _category;
         public RoomType Category
         {
@@ -38,15 +38,15 @@ namespace BlueTeamGroupProject
             _category = Type;
             _itemlist = items;
         }
-        public void addExit(Location place)
+        public void addExit(Location.Direction direction, Room place)
         {
-            Exits.Append(place);
+            Exits.Append(new Tuple<Location.Direction, Room>(direction, place));
         }
-        public void removeExit(Location.Direction Placement, string Name)
+        public void removeExit(Location.Direction Placement, Room room)
         {
-            foreach (Location Exit in Exits)
+            foreach (Tuple<Location.Direction, Room> Exit in Exits)
             {
-                if (Exit.Dir == Placement && Exit.ID == Name)
+                if (Exit.Item1 == Placement && Exit.Item2 == room)
                 {
                     Exits.Remove(Exit);
                 }

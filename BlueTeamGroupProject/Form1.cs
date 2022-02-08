@@ -12,6 +12,13 @@ namespace BlueTeamGroupProject
 {
     public partial class Form1 : Form
     {
+        public enum Stats
+        {
+            HP,
+            DMG,
+            AMR,
+            SANITY
+        }
         public Form1()
         {
             InitializeComponent();
@@ -22,8 +29,9 @@ namespace BlueTeamGroupProject
         Inventory testInv = new Inventory("Player Inventory");
         private void myScreen_Click(object sender, EventArgs e)
         {
-            
-            
+
+            Result testResult = new Result(target: Result.Targets.Self, stat: Result.Stats.HP);
+            Console.WriteLine(testResult.Duration);
             Weapon testWeapon = new Weapon("Sword", 99);
             Item testItem = new Item("Glass", new string[]{ "Attack" }, new string[]{ "E-5HEALTH"});
             testInv.addStuff(testItem);

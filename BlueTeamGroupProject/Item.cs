@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlueTeamGroupProject
 {
-    class Item
+    class Item : Interactable
     {
         private string _name;
         public string Name
@@ -14,9 +14,9 @@ namespace BlueTeamGroupProject
             get { return _name; }
             set { _name = value; }
         }
-        Dictionary<string, string> actions = new Dictionary<string, string>();
+        //Dictionary<string, string> actions = new Dictionary<string, string>();
         
-        public Item(string name, string[] Commands, string[] Results)
+        public Item(string name, string[] Commands, Result[] Results)
         {
             _name = name;
             if (Commands.Length != Results.Length)

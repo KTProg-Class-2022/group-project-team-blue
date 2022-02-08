@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace BlueTeamGroupProject
 {
-    class Weapon
+    class Weapon : Interactable
     {
         
         
-        private int _attack;
-        public int Attack
+        private Result _attack;
+        public Result Attack
         {
             get
             {
@@ -34,10 +34,10 @@ namespace BlueTeamGroupProject
                 _name = value;
             }
         }
-        public Weapon(string name, int attack)
+        public Weapon(string name, Result result)
         {
             _name = name;
-            _attack = attack;
+            _attack = result;
             
         }
 
