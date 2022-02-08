@@ -10,8 +10,8 @@ namespace BlueTeamGroupProject
     {
         
         
-        private Result _attack;
-        public Result Attack
+        private Result[] _attack;
+        public Result[] Attack
         {
             get
             {
@@ -34,7 +34,7 @@ namespace BlueTeamGroupProject
                 _name = value;
             }
         }
-        public Weapon(string name, Result result)
+        public Weapon(string name, Result[] result)
         {
             _name = name;
             _attack = result;

@@ -12,13 +12,7 @@ namespace BlueTeamGroupProject
 {
     public partial class Form1 : Form
     {
-        public enum Stats
-        {
-            HP,
-            DMG,
-            AMR,
-            SANITY
-        }
+
         public Form1()
         {
             InitializeComponent();
@@ -30,10 +24,12 @@ namespace BlueTeamGroupProject
         private void myScreen_Click(object sender, EventArgs e)
         {
 
-            Result testResult = new Result(target: Result.Targets.Self, stat: Result.Stats.HP);
+            Result testResult = new Result();
+            Result[] groupOfResults = { testResult };
+            Result[][] doubleGroupingResults = { groupOfResults };
             Console.WriteLine(testResult.Duration);
-            Weapon testWeapon = new Weapon("Sword", 99);
-            Item testItem = new Item("Glass", new string[]{ "Attack" }, new string[]{ "E-5HEALTH"});
+            Weapon testWeapon = new Weapon("Sword", groupOfResults);
+            Item testItem = new Item("Glass", new string[] { "Attack" }, doubleGroupingResults);
             testInv.addStuff(testItem);
             testInv.addStuff(testWeapon);
             

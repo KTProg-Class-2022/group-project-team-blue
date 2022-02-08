@@ -16,7 +16,7 @@ namespace BlueTeamGroupProject
         }
         //Dictionary<string, string> actions = new Dictionary<string, string>();
         
-        public Item(string name, string[] Commands, Result[] Results)
+        public Item(string name, string[] Commands, Result[][] Results)
         {
             _name = name;
             if (Commands.Length != Results.Length)
@@ -31,7 +31,7 @@ namespace BlueTeamGroupProject
                 }
             }
         }
-        public void addAction(string Command, string Result)
+        public void addAction(string Command, Result[] Result)
         {
             actions[Command] = Result;
         }
