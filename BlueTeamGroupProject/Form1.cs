@@ -29,7 +29,7 @@ namespace BlueTeamGroupProject
             Result[][] doubleGroupingResults = { groupOfResults };
             Console.WriteLine(testResult.Duration);
             Weapon testWeapon = new Weapon("Sword", groupOfResults);
-            Item testItem = new Item("Glass", new string[] { "Attack" }, doubleGroupingResults);
+            Item testItem = new Item("Glass", "it is a piece of glass", new string[] { "Attack" }, doubleGroupingResults);
             testInv.addStuff(testItem);
             testInv.addStuff(testWeapon);
             
