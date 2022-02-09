@@ -25,7 +25,8 @@ namespace BlueTeamGroupProject
             Static,
             Travel,
             Dungeon,
-            Combat
+            Combat,
+            Normal
         }
 
         private List<(Location.Direction, Room)> Exits = new List<(Location.Direction, Room)>();
@@ -45,7 +46,7 @@ namespace BlueTeamGroupProject
         {
             get { return _desc; }
         }
-        Room(RoomType Type, String name, Item[] items, string description)
+        Room(RoomType Type, String name, object[] items, string description)
         {
             _name = name;
             _itemlist = new Inventory(name + "_Room");

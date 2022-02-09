@@ -23,7 +23,7 @@ namespace BlueTeamGroupProject
         Character PlayInv = new Character("Player Inventory");
         private void myScreen_Click(object sender, EventArgs e)
         {
-
+            Room start = new Room(Room.RoomType.Normal, "Start", object[] { Item MangoMace }, "Its a bouncy Castle" );
             Result testResult = new Result();
             Result[] groupOfResults = { testResult };
             Result[][] doubleGroupingResults = { groupOfResults };
