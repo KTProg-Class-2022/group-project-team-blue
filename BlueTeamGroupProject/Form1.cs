@@ -39,12 +39,16 @@ namespace BlueTeamGroupProject
 
         private void myConsole_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyData == Keys.Enter)
+            Result testResult = new Result();
+            Result[] groupOfResults = { testResult };
+            Result[][] doubleGroupingResults = { groupOfResults };
+            if (e.KeyData == Keys.Enter)
             {
-                Console.WriteLine("You Pressed Enter!");
-                sendCommand(myConsole.Text.Split(' '));
-                myConsole.Text = "";
-                e.SuppressKeyPress = true;
+                Weapon GODSTICK = new Weapon("Holy Stick of Sticks!!!!", groupOfResults);
+                PlayInv.playerAdd(GODSTICK);
+                InvBox.Text = PlayInv.playerValue();
+                myConsole.Text = "You picked up the God Stick!!!";
+                Console.WriteLine("Enter Presed");
             }
         }
         private void sendCommand(string[] input)
