@@ -30,25 +30,28 @@ namespace BlueTeamGroupProject
         public List<object> getStuff()
         {
             return (Content);
+            
         }
-        public string getValues()
+        
+        public (List<Weapon>, List<Item>) getValues()
         {
-            string returnString = "";
-            foreach(object value in Content)
+            List<Weapon> weapons = new List<Weapon>();
+            List<Item> items = new List<Item>();
+            foreach (object value in Content)
             {
                 if(value is Weapon)
                 {
                     Weapon valWep = value as Weapon;
-                    returnString+= "WEAPON: "+ valWep.Name + "\n";
+                    weapons.Append(valWep);
                 }
                 if (value is Item)
                 {
                     Item valItem = value as Item;
-                    returnString += "ITEM: " + valItem.Name + "\n";
+                    items.Append(valItem);
                 }
                 
             }
-            return (returnString);
+            return (weapons, items);
         }
 
 
