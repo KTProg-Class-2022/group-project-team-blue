@@ -56,7 +56,7 @@ namespace BlueTeamGroupProject
         {
             player.addStuff(item);
         }
-        public string playerValue()
+        public (List<Weapon>, List<Item>) playerValue()
         {
             return player.getValues();
         }
