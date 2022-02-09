@@ -28,11 +28,13 @@ namespace BlueTeamGroupProject
             Result[] groupOfResults = { testResult };
             Result[][] doubleGroupingResults = { groupOfResults };
             Console.WriteLine(testResult.Duration);
-            Weapon testWeapon = new Weapon("Sword", groupOfResults);
-            Item testItem = new Item("Glass", "it is a piece of glass", new string[] { "Attack" }, doubleGroupingResults);
-            testInv.addStuff(testItem);
-            testInv.addStuff(testWeapon);
-            
+            Weapon testWeapon = new Weapon("Sword", 99);
+            Item testItem = new Item("Glass", "a piece of glass", new string[] { "Attack" }, doubleGroupingResults);
+            PlayInv.playerAdd(testWeapon);
+            PlayInv.playerAdd(testItem);
+            InvBox.Text = PlayInv.playerValue();
+            myConsole.Text = "There is a Weapon on the ground. Will you Pick it up? (type 'GRAB' to pick it up)\n";
+
         }
 
         private void myConsole_KeyDown(object sender, KeyEventArgs e)
