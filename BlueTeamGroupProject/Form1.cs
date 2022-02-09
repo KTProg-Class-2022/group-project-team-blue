@@ -20,7 +20,7 @@ namespace BlueTeamGroupProject
 
         }
         public Dictionary<string, Func<string[],  System.Object>> actionList = new Dictionary<string, Func<string[], System.Object>>();
-        Inventory testInv = new Inventory("Player Inventory");
+        Character PlayInv = new Character("Player Inventory");
         private void myScreen_Click(object sender, EventArgs e)
         {
 
@@ -28,7 +28,7 @@ namespace BlueTeamGroupProject
             Result[] groupOfResults = { testResult };
             Result[][] doubleGroupingResults = { groupOfResults };
             Console.WriteLine(testResult.Duration);
-            Weapon testWeapon = new Weapon("Sword", 99);
+            Weapon testWeapon = new Weapon("Sword", groupOfResults);
             Item testItem = new Item("Glass", "a piece of glass", new string[] { "Attack" }, doubleGroupingResults);
             PlayInv.playerAdd(testWeapon);
             PlayInv.playerAdd(testItem);
@@ -69,7 +69,7 @@ namespace BlueTeamGroupProject
         {
             Console.WriteLine("Wow thats a weapon!");
             Console.WriteLine("You Chose: " + weapon[1]);
-            foreach(object obj in testInv.getStuff())
+            foreach(object obj in PlayInv.playerStuff())
             {
                 if (obj is Weapon)
                 {

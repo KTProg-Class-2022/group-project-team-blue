@@ -32,6 +32,7 @@ namespace BlueTeamGroupProject
             this.myConsole = new System.Windows.Forms.RichTextBox();
             this.myScreen = new System.Windows.Forms.PictureBox();
             this.myInventory = new System.Windows.Forms.PictureBox();
+            this.InvBox = new System.Windows.Forms.RichTextBox();
             this.outputConsole = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.myScreen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myInventory)).BeginInit();
@@ -39,9 +40,9 @@ namespace BlueTeamGroupProject
             // 
             // myConsole
             // 
-            this.myConsole.Location = new System.Drawing.Point(12, 448);
+            this.myConsole.Location = new System.Drawing.Point(12, 330);
             this.myConsole.Name = "myConsole";
-            this.myConsole.Size = new System.Drawing.Size(796, 29);
+            this.myConsole.Size = new System.Drawing.Size(488, 147);
             this.myConsole.TabIndex = 0;
             this.myConsole.Text = "";
             this.myConsole.TextChanged += new System.EventHandler(this.myConsole_TextChanged);
@@ -66,14 +67,22 @@ namespace BlueTeamGroupProject
             this.myInventory.TabIndex = 2;
             this.myInventory.TabStop = false;
             // 
+            // InvBox
+            // 
+            this.InvBox.Location = new System.Drawing.Point(554, 12);
+            this.InvBox.Name = "InvBox";
+            this.InvBox.Size = new System.Drawing.Size(254, 161);
+            this.InvBox.TabIndex = 3;
+            this.InvBox.Text = "";
+            // 
             // outputConsole
             // 
-            this.outputConsole.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.outputConsole.Location = new System.Drawing.Point(12, 330);
+            this.outputConsole.BackColor = System.Drawing.SystemColors.InfoText;
+            this.outputConsole.ForeColor = System.Drawing.SystemColors.Menu;
+            this.outputConsole.Location = new System.Drawing.Point(533, 330);
             this.outputConsole.Name = "outputConsole";
-            this.outputConsole.ReadOnly = true;
-            this.outputConsole.Size = new System.Drawing.Size(796, 112);
-            this.outputConsole.TabIndex = 3;
+            this.outputConsole.Size = new System.Drawing.Size(275, 147);
+            this.outputConsole.TabIndex = 4;
             this.outputConsole.Text = "";
             // 
             // Form1
@@ -83,6 +92,7 @@ namespace BlueTeamGroupProject
             this.BackgroundImage = global::BlueTeamGroupProject.Properties.Resources.borderBeta1;
             this.ClientSize = new System.Drawing.Size(820, 489);
             this.Controls.Add(this.outputConsole);
+            this.Controls.Add(this.InvBox);
             this.Controls.Add(this.myInventory);
             this.Controls.Add(this.myScreen);
             this.Controls.Add(this.myConsole);
@@ -99,6 +109,7 @@ namespace BlueTeamGroupProject
         private System.Windows.Forms.RichTextBox myConsole;
         private System.Windows.Forms.PictureBox myScreen;
         private System.Windows.Forms.PictureBox myInventory;
+        private System.Windows.Forms.RichTextBox InvBox;
         private System.Windows.Forms.RichTextBox outputConsole;
     }
 }
