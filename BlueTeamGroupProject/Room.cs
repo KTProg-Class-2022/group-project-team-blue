@@ -45,14 +45,21 @@ namespace BlueTeamGroupProject
         {
             get { return _desc; }
         }
-        Room(RoomType Type, String name, Item[] items, string description)
+        Room(RoomType Type, String name, List<object> objects, string description)
         {
             _name = name;
             _itemlist = new Inventory(name + "_Room");
             _category = Type;
-            foreach (Item item in items)
+            foreach (object obj in objects)
             {
-                _itemlist.addStuff(item);
+                if (obj is Item)
+                {
+                    _itemlist.addStuff(obj as Item);
+                }
+                else if(obj is Weapon)
+                {
+                    _itemlist.addStuff(obj as Weapon);
+                }
             }
             
         }
