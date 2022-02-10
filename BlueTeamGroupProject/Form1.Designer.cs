@@ -34,6 +34,7 @@ namespace BlueTeamGroupProject
             this.myInventory = new System.Windows.Forms.PictureBox();
             this.InvBox = new System.Windows.Forms.RichTextBox();
             this.outputConsole = new System.Windows.Forms.RichTextBox();
+            this.RoomBox = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.myScreen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myInventory)).BeginInit();
             this.SuspendLayout();
@@ -85,12 +86,23 @@ namespace BlueTeamGroupProject
             this.outputConsole.TabIndex = 4;
             this.outputConsole.Text = "";
             // 
+            // RoomBox
+            // 
+            this.RoomBox.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.RoomBox.ForeColor = System.Drawing.Color.Red;
+            this.RoomBox.Location = new System.Drawing.Point(565, 182);
+            this.RoomBox.Name = "RoomBox";
+            this.RoomBox.Size = new System.Drawing.Size(232, 132);
+            this.RoomBox.TabIndex = 5;
+            this.RoomBox.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::BlueTeamGroupProject.Properties.Resources.borderBeta1;
             this.ClientSize = new System.Drawing.Size(820, 489);
+            this.Controls.Add(this.RoomBox);
             this.Controls.Add(this.outputConsole);
             this.Controls.Add(this.InvBox);
             this.Controls.Add(this.myInventory);
@@ -111,6 +123,7 @@ namespace BlueTeamGroupProject
         private System.Windows.Forms.PictureBox myInventory;
         private System.Windows.Forms.RichTextBox InvBox;
         private System.Windows.Forms.RichTextBox outputConsole;
+        private System.Windows.Forms.RichTextBox RoomBox;
     }
 }
 

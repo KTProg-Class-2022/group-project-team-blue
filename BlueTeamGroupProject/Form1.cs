@@ -23,13 +23,20 @@ namespace BlueTeamGroupProject
         Character PlayInv = new Character("Player Inventory");
         private void myScreen_Click(object sender, EventArgs e)
         {
-            Room start = new Room(Room.RoomType.Normal, "Start", object[] { Item MangoMace }, "Its a bouncy Castle" );
+            object[] roomItems = new object[10];
+
+
             Result testResult = new Result();
             Result[] groupOfResults = { testResult };
             Result[][] doubleGroupingResults = { groupOfResults };
             Console.WriteLine(testResult.Duration);
             Weapon testWeapon = new Weapon("Sword", groupOfResults);
             Item testItem = new Item("Glass", "a piece of glass", new string[] { "Attack" }, doubleGroupingResults);
+            Item BouncyBall = new Item("Bouncy Ball", "A ball that bounces...", new string[] { "Attack" }, doubleGroupingResults);
+            Weapon MangoMace = new Weapon("MangoMace", groupOfResults);
+            roomItems[0] = BouncyBall;
+            roomItems[1] = MangoMace;
+            Room start = new Room(Room.RoomType.Normal, "Start", roomItems, "Its a bouncy Castle" );
             PlayInv.playerAdd(testWeapon);
             PlayInv.playerAdd(testItem);
             InvBox.Text = PlayInv.playerValue();
@@ -49,6 +56,10 @@ namespace BlueTeamGroupProject
                 InvBox.Text = PlayInv.playerValue();
                 myConsole.Text = "You picked up the God Stick!!!";
                 Console.WriteLine("Enter Presed");
+            }
+            if (e.KeyData == Keys.R)
+            {
+                RoomBox.Text = "There should be info here";
             }
         }
         private void sendCommand(string[] input)

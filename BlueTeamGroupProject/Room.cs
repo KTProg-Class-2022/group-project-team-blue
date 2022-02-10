@@ -30,6 +30,7 @@ namespace BlueTeamGroupProject
         }
 
         private List<(Location.Direction, Room)> Exits = new List<(Location.Direction, Room)>();
+
         private RoomType _category;
         public RoomType Category
         {
@@ -46,7 +47,7 @@ namespace BlueTeamGroupProject
         {
             get { return _desc; }
         }
-        Room(RoomType Type, String name, object[] items, string description)
+        public Room(RoomType Type, String name, object[] items, string description)
         {
             _name = name;
             _itemlist = new Inventory(name + "_Room");
