@@ -21,9 +21,11 @@ namespace BlueTeamGroupProject
         }
         public Dictionary<string, Func<string[],  System.Object>> actionList = new Dictionary<string, Func<string[], System.Object>>();
         Character PlayInv = new Character("Player Inventory");
+        Room start = new Room(Room.RoomType.Normal, "Start", new List<object>(), "Its a bouncy Castle");
         private void myScreen_Click(object sender, EventArgs e)
         {
-            object[] roomItems = new object[10];
+            start.ItemList = new Inventory("Start Items");
+            
 
 
             Result testResult = new Result();
@@ -34,12 +36,14 @@ namespace BlueTeamGroupProject
             Item testItem = new Item("Glass", "a piece of glass", new string[] { "Attack" }, doubleGroupingResults);
             Item BouncyBall = new Item("Bouncy Ball", "A ball that bounces...", new string[] { "Attack" }, doubleGroupingResults);
             Weapon MangoMace = new Weapon("MangoMace", groupOfResults);
-            roomItems[0] = BouncyBall;
-            roomItems[1] = MangoMace;
-            Room start = new Room(Room.RoomType.Normal, "Start", roomItems, "Its a bouncy Castle" );
-            PlayInv.playerAdd(testWeapon);
-            PlayInv.playerAdd(testItem);
-            InvBox.Text = PlayInv.playerValue();
+            start.ItemList.addStuff(BouncyBall);
+            start.ItemList.addStuff(MangoMace);
+            
+            PlayInv.inv.addStuff(testWeapon);
+            PlayInv.inv.addStuff(testItem);
+            
+            InvBox.Text = string.Join(", ", PlayInv.inv.getStuff());
+            
             myConsole.Text = "There is a Weapon on the ground. Will you Pick it up? (type 'GRAB' to pick it up)\n";
 
         }
@@ -52,14 +56,16 @@ namespace BlueTeamGroupProject
             if (e.KeyData == Keys.Enter)
             {
                 Weapon GODSTICK = new Weapon("Holy Stick of Sticks!!!!", groupOfResults);
-                PlayInv.playerAdd(GODSTICK);
-                InvBox.Text = PlayInv.playerValue();
+                PlayInv.inv.addStuff(GODSTICK);
+                InvBox.Text = string.Join("\n",PlayInv.inv.getStuff());
                 myConsole.Text = "You picked up the God Stick!!!";
                 Console.WriteLine("Enter Presed");
             }
             if (e.KeyData == Keys.R)
             {
-                RoomBox.Text = "There should be info here";
+                
+                RoomBox.Text = string.Join(", ", start.ItemList.getStuff());
+                
             }
         }
         private void sendCommand(string[] input)
@@ -84,7 +90,7 @@ namespace BlueTeamGroupProject
         {
             Console.WriteLine("Wow thats a weapon!");
             Console.WriteLine("You Chose: " + weapon[1]);
-            foreach(object obj in PlayInv.playerStuff())
+            foreach(object obj in PlayInv.inv.getStuff())
             {
                 if (obj is Weapon)
                 {

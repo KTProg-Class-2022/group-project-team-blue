@@ -42,6 +42,9 @@ namespace BlueTeamGroupProject
         {
             actions[Command] = Result;
         }
-
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

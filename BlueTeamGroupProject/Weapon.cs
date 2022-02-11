@@ -40,7 +40,11 @@ namespace BlueTeamGroupProject
             _attack = result;
             
         }
+        public override string ToString()
+        {
+            return Name;
+        }
 
-        
+
     }
 }
