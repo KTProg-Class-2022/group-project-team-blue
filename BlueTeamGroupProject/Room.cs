@@ -52,11 +52,11 @@ namespace BlueTeamGroupProject
             _name = name;
             _itemlist = new Inventory(name + "_Room");
             _category = Type;
-            foreach (Item item in items)
+            foreach (object item in items)
             {
                 _itemlist.addStuff(item);
             }
-            
+
         }
 
         public void addExit(Location.Direction direction, Room place)

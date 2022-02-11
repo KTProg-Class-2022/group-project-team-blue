@@ -54,7 +54,5 @@ namespace BlueTeamGroupProject
             return (weapons, items);
         }
 
-
-
     }
 }

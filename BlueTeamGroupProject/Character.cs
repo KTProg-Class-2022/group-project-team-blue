@@ -62,6 +62,9 @@ namespace BlueTeamGroupProject
             return player.getValues();
         }
 
+
+
+
         public List<object> playerStuff()
         {
             return player.getStuff();
