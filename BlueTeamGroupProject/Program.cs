@@ -8,6 +8,7 @@ namespace BlueTeamGroupProject
 {
     static class Program
     {
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -17,9 +18,9 @@ namespace BlueTeamGroupProject
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+            Room basic;
 
-
-
+            
             
         }
     }

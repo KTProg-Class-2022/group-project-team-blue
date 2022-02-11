@@ -6,30 +6,42 @@ using System.Threading.Tasks;
 
 namespace BlueTeamGroupProject
 {
-    class Item
+    class Item : Interactable
     {
-        public int Attack
+        private string _name;
+        public string Name
         {
-            get
-            {
-                return Attack;
-            }
-            set
-            {
-                Attack = value;
-            }
+            get { return _name; }
+            set { _name = value; }
         }
 
-        public string Item
+        private string _desc;
+        public string Desc
         {
-            get
+            get { return _desc; }
+            set { _desc= value; }
+        }
+        //Dictionary<string, string> actions = new Dictionary<string, string>();
+
+        public Item(string name, string Desc, string[] Commands, Result[][] Results)
+        {
+            _name = name;
+            if (Commands.Length != Results.Length)
             {
-                return Item;
+                Console.WriteLine("The Results and Commands are unbalanced");
             }
-            set
+            else
             {
-                Item = value;
+                for(int i = 0; i < Commands.Length; i++)
+                {
+                    actions[Commands[i]] = Results[i];
+                }
             }
         }
+        public void addAction(string Command, Result[] Result)
+        {
+            actions[Command] = Result;
+        }
+
     }
 }

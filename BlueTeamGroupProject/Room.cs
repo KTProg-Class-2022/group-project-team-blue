@@ -6,24 +6,38 @@ using System.Threading.Tasks;
 
 namespace BlueTeamGroupProject
 {
-    class Room
+    class Room : Interactable
     {
+        private string _name;
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+            }
+        }
         public enum RoomType
         {
             Static,
             Travel,
             Dungeon,
-            Combat
+            Combat,
+            Normal
         }
-        
-        private List<Location> Exits;
+
+        private List<(Location.Direction, Room)> Exits = new List<(Location.Direction, Room)>();
+
         private RoomType _category;
         public RoomType Category
         {
             get { return _category; }
         }
-        private Item[] _itemlist;
-        public Item[] ItemList
+        private Inventory _itemlist;
+        public Inventory ItemList
         {
             get { return _itemlist; }
             set { _itemlist = value; }
@@ -33,22 +47,30 @@ namespace BlueTeamGroupProject
         {
             get { return _desc; }
         }
-        Room(RoomType Type, Item[] items, string description)
+        public Room(RoomType Type, String name, object[] items, string description)
         {
+            _name = name;
+            _itemlist = new Inventory(name + "_Room");
             _category = Type;
-            _itemlist = items;
+            foreach (Item item in items)
+            {
+                _itemlist.addStuff(item);
+            }
+            
         }
 
-        public void addExit(Location place) {
-            Exits.Append(place);
-        }
-        public void removeExit(Location.Direction Placement, string Name)
+        public void addExit(Location.Direction direction, Room place)
         {
-            foreach(Location Exit in Exits)
+            Exits.Append((direction, place));
+        }
+        public void removeExit(Location.Direction Placement, Room room)
+        {
+            foreach ((Location.Direction a, Room b) in Exits)
             {
-                if (Exit.Dir == Placement && Exit.ID == Name)
+                
+                if (a == Placement && b == room)
                 {
-                    Exits.Remove(Exit);
+                    Exits.Remove((a,b));
                 }
             }
         }

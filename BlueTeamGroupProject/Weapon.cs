@@ -6,30 +6,41 @@ using System.Threading.Tasks;
 
 namespace BlueTeamGroupProject
 {
-    class Weapon
+    class Weapon : Interactable
     {
-        public int Attack
+        
+        
+        private Result[] _attack;
+        public Result[] Attack
         {
             get
             {
-                return Attack;
+                return _attack;
             }
             set
             {
-                Attack = value;
+                _attack = value;
             }
+        }
+        private string _name;
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+            }
+        }
+        public Weapon(string name, Result[] result)
+        {
+            _name = name;
+            _attack = result;
+            
         }
 
-        public string Item
-        {
-            get
-            {
-                return Item;
-            }
-            set
-            {
-                Item = value;
-            }
-        }
+        
     }
 }
