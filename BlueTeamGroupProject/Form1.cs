@@ -12,16 +12,20 @@ namespace BlueTeamGroupProject
 {
     public partial class Form1 : Form
     {
-
+        public Dictionary<string, Func<string[], System.Object>> actionList = new Dictionary<string, Func<string[], System.Object>>();
+        Character PlayInv = new Character("Player Inventory");
+        Room start = new Room(Room.RoomType.Normal, "Start", new List<object>(), "Its a bouncy Castle");
+        
         public Form1()
         {
             InitializeComponent();
-            actionList.Add("Use", getUseAction);
+            actionList.Add("USE", getUseAction);
+            Room secondRoom = new Room(Room.RoomType.Normal, "Second", new List<object>(), "This is the second room");
+            start.addExit(Locations.Direction.North, secondRoom);
+            
 
         }
-        public Dictionary<string, Func<string[],  System.Object>> actionList = new Dictionary<string, Func<string[], System.Object>>();
-        Character PlayInv = new Character("Player Inventory");
-        Room start = new Room(Room.RoomType.Normal, "Start", new List<object>(), "Its a bouncy Castle");
+        
         private void myScreen_Click(object sender, EventArgs e)
         {
             start.ItemList = new Inventory("Start Items");
@@ -47,30 +51,39 @@ namespace BlueTeamGroupProject
             myConsole.Text = "There is a Weapon on the ground. Will you Pick it up? (type 'GRAB' to pick it up)\n";
 
         }
-
+        string pastInput = "";
         private void myConsole_KeyDown(object sender, KeyEventArgs e)
         {
+
             Result testResult = new Result();
             Result[] groupOfResults = { testResult };
             Result[][] doubleGroupingResults = { groupOfResults };
             if (e.KeyData == Keys.Enter)
             {
+                pastInput += myConsole.Text.Last();
+                sendCommand(pastInput.Split(' '));
                 Weapon GODSTICK = new Weapon("Holy Stick of Sticks!!!!", groupOfResults);
                 PlayInv.inv.addStuff(GODSTICK);
                 InvBox.Text = string.Join("\n",PlayInv.inv.getStuff());
-                myConsole.Text = "You picked up the God Stick!!!";
-                Console.WriteLine("Enter Presed");
+                
+                Console.WriteLine("Enter Pressed");
+                
+                pastInput = "";
+                e.Handled = true;
+                
             }
-            if (e.KeyData == Keys.R)
+            else
             {
-                
-                RoomBox.Text = string.Join(", ", start.ItemList.getStuff());
-                
+                if (myConsole.Text != "")
+                {
+                    pastInput += myConsole.Text.Last();
+                }
             }
+            
         }
         private void sendCommand(string[] input)
         {
-            string command = input[0];
+            string command = input[0].ToUpper();
             foreach(string Action in actionList.Keys)
             {
                 Console.WriteLine("Action: " + Action);
@@ -96,7 +109,7 @@ namespace BlueTeamGroupProject
                 {
                     Weapon wep = obj as Weapon;
                     Console.WriteLine(wep.Name);
-                    if (wep.Name == weapon[1])
+                    if (wep.Name.ToUpper() == weapon[1].ToUpper())
                     {
                         outputConsole.Text += "\n" + wep.Name;
                     }

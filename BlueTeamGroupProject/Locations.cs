@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlueTeamGroupProject
 {
-    class Location
+    class Locations
     {
         public enum Direction
         {
@@ -32,7 +32,7 @@ namespace BlueTeamGroupProject
             get { return _id; }
             set { _id = value; }
         }
-        Location(string id, string info, Direction Placement)
+        Locations(string id, string info, Direction Placement)
         {
             _Dir = Placement;
             _desc = info;

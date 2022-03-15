@@ -29,7 +29,7 @@ namespace BlueTeamGroupProject
             Normal
         }
 
-        private List<(Location.Direction, Room)> Exits = new List<(Location.Direction, Room)>();
+        private List<(Locations.Direction, Room)> Exits = new List<(Locations.Direction, Room)>();
 
         private RoomType _category;
         public RoomType Category
@@ -59,13 +59,13 @@ namespace BlueTeamGroupProject
 
         }
 
-        public void addExit(Location.Direction direction, Room place)
+        public void addExit(Locations.Direction direction, Room place)
         {
             Exits.Append((direction, place));
         }
-        public void removeExit(Location.Direction Placement, Room room)
+        public void removeExit(Locations.Direction Placement, Room room)
         {
-            foreach ((Location.Direction a, Room b) in Exits)
+            foreach ((Locations.Direction a, Room b) in Exits)
             {
                 
                 if (a == Placement && b == room)
