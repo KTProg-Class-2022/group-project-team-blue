@@ -8,10 +8,10 @@ namespace BlueTeamGroupProject
 {
     class Character
     {
-        Inventory player = new Inventory("player");
+        
         Weapon equip = null;
         Item items = null;
-
+        public Inventory inv;
 
 
         private int Health;
@@ -39,6 +39,7 @@ namespace BlueTeamGroupProject
         public Character(string name)
         {
             this._name = name;
+            this.inv = new Inventory(name + "_inv");
         }
         public enum Stats
         {
@@ -69,6 +70,7 @@ namespace BlueTeamGroupProject
         {
             return player.getStuff();
         }
+        
 
 
     }
