@@ -48,38 +48,14 @@ namespace BlueTeamGroupProject
             
             InvBox.Text = string.Join(", ", PlayInv.inv.getStuff());
             
-            myConsole.Text = "There is a Weapon on the ground. Will you Pick it up? (type 'GRAB' to pick it up)\n";
+            myConsoleOut.Text = "There is a Weapon on the ground. Will you Pick it up? (type 'GRAB' to pick it up)\n";
 
         }
         string pastInput = "";
         private void myConsole_KeyDown(object sender, KeyEventArgs e)
         {
 
-            Result testResult = new Result();
-            Result[] groupOfResults = { testResult };
-            Result[][] doubleGroupingResults = { groupOfResults };
-            if (e.KeyData == Keys.Enter)
-            {
-                pastInput += myConsole.Text.Last();
-                sendCommand(pastInput.Split(' '));
-                Weapon GODSTICK = new Weapon("Holy Stick of Sticks!!!!", groupOfResults);
-                PlayInv.inv.addStuff(GODSTICK);
-                InvBox.Text = string.Join("\n",PlayInv.inv.getStuff());
-                
-                Console.WriteLine("Enter Pressed");
-                
-                pastInput = "";
-                e.Handled = true;
-                
-            }
-            else
-            {
-                if (myConsole.Text != "")
-                {
-                    pastInput += myConsole.Text.Last();
-                }
-            }
-            
+           
         }
         private void sendCommand(string[] input)
         {
@@ -101,15 +77,21 @@ namespace BlueTeamGroupProject
         }
         private System.Object getUseAction(string[] weapon)
         {
+            
+            if(weapon.Length <= 1)
+            {
+                return 0;
+            }
+            string selection = string.Join(" ", weapon.Skip(1));
             Console.WriteLine("Wow thats a weapon!");
-            Console.WriteLine("You Chose: " + weapon[1]);
+            Console.WriteLine("You Chose: " + selection);
             foreach(object obj in PlayInv.inv.getStuff())
             {
                 if (obj is Weapon)
                 {
                     Weapon wep = obj as Weapon;
                     Console.WriteLine(wep.Name);
-                    if (wep.Name.ToUpper() == weapon[1].ToUpper())
+                    if (wep.Name.ToUpper() == selection.ToUpper())
                     {
                         outputConsole.Text += "\n" + wep.Name;
                     }
@@ -118,6 +100,30 @@ namespace BlueTeamGroupProject
 
 
             return (true);
+        }
+
+        private void myConsole_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            Result testResult = new Result();
+            Result[] groupOfResults = { testResult };
+            Result[][] doubleGroupingResults = { groupOfResults };
+            if (e.KeyData == Keys.Enter && myConsole.Text != "")
+            {
+               
+                sendCommand(myConsole.Text.Split(' '));
+                Weapon GODSTICK = new Weapon("Holy Stick of Sticks!!!!", groupOfResults);
+                PlayInv.inv.addStuff(GODSTICK);
+                InvBox.Text = string.Join("\n", PlayInv.inv.getStuff());
+
+                Console.WriteLine("Enter Pressed");
+                myConsoleOut.Text += myConsole.Text + '\n';
+               
+                myConsole.Text = "";
+                e.Handled = true;
+
+            }
+            
+
         }
     }
 }
