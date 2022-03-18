@@ -14,15 +14,17 @@ namespace BlueTeamGroupProject
     {
         public Dictionary<string, Func<string[], System.Object>> actionList = new Dictionary<string, Func<string[], System.Object>>();
         Character PlayInv = new Character("Player Inventory");
+        Room basic = new Room(Room.RoomType.Normal, "Basic", new List<object>(), "Its just a room");
         Room start = new Room(Room.RoomType.Normal, "Start", new List<object>(), "Its a bouncy Castle");
-        
+        Room secondRoom = new Room(Room.RoomType.Normal, "Second", new List<object>(), "This is the second room");
+
+
         public Form1()
         {
             InitializeComponent();
             actionList.Add("USE", getUseAction);
-            Room secondRoom = new Room(Room.RoomType.Normal, "Second", new List<object>(), "This is the second room");
-            start.addExit(Locations.Direction.North, secondRoom);
-            
+            basic.addExit(Locations.Direction.North, secondRoom);
+            secondRoom.addExit(Locations.Direction.South, start);
 
         }
         
@@ -54,7 +56,6 @@ namespace BlueTeamGroupProject
         string pastInput = "";
         private void myConsole_KeyDown(object sender, KeyEventArgs e)
         {
-
             Result testResult = new Result();
             Result[] groupOfResults = { testResult };
             Result[][] doubleGroupingResults = { groupOfResults };
@@ -64,13 +65,25 @@ namespace BlueTeamGroupProject
                 sendCommand(pastInput.Split(' '));
                 Weapon GODSTICK = new Weapon("Holy Stick of Sticks!!!!", groupOfResults);
                 PlayInv.inv.addStuff(GODSTICK);
-                InvBox.Text = string.Join("\n",PlayInv.inv.getStuff());
-                
+                InvBox.Text = string.Join("\n", PlayInv.inv.getStuff());
+
                 Console.WriteLine("Enter Pressed");
-                
+
                 pastInput = "";
                 e.Handled = true;
-                
+
+            }
+            else if (e.KeyData == Keys.R)
+            {
+                outputConsole.Text += basic.Name;
+            }
+            else if (e.KeyData == Keys.U)
+            {
+                basic = start;
+            }
+            else if (e.KeyData == Keys.K)
+            {
+                basic = secondRoom;
             }
             else
             {
@@ -79,7 +92,6 @@ namespace BlueTeamGroupProject
                     pastInput += myConsole.Text.Last();
                 }
             }
-            
         }
         private void sendCommand(string[] input)
         {
@@ -115,9 +127,12 @@ namespace BlueTeamGroupProject
                     }
                 }
             }
-
-
             return (true);
+        }
+
+        private void InputBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

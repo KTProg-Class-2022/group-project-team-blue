@@ -35,6 +35,7 @@ namespace BlueTeamGroupProject
             this.InvBox = new System.Windows.Forms.RichTextBox();
             this.outputConsole = new System.Windows.Forms.RichTextBox();
             this.RoomBox = new System.Windows.Forms.RichTextBox();
+            this.InputBox = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.myScreen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myInventory)).BeginInit();
             this.SuspendLayout();
@@ -43,7 +44,8 @@ namespace BlueTeamGroupProject
             // 
             this.myConsole.Location = new System.Drawing.Point(12, 330);
             this.myConsole.Name = "myConsole";
-            this.myConsole.Size = new System.Drawing.Size(488, 147);
+            this.myConsole.ReadOnly = true;
+            this.myConsole.Size = new System.Drawing.Size(488, 75);
             this.myConsole.TabIndex = 0;
             this.myConsole.Text = "";
             this.myConsole.TextChanged += new System.EventHandler(this.myConsole_TextChanged);
@@ -96,12 +98,23 @@ namespace BlueTeamGroupProject
             this.RoomBox.TabIndex = 5;
             this.RoomBox.Text = "";
             // 
+            // InputBox
+            // 
+            this.InputBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.InputBox.Location = new System.Drawing.Point(12, 416);
+            this.InputBox.Name = "InputBox";
+            this.InputBox.Size = new System.Drawing.Size(488, 61);
+            this.InputBox.TabIndex = 0;
+            this.InputBox.Text = "";
+            this.InputBox.TextChanged += new System.EventHandler(this.InputBox_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::BlueTeamGroupProject.Properties.Resources.borderBeta1;
             this.ClientSize = new System.Drawing.Size(820, 489);
+            this.Controls.Add(this.InputBox);
             this.Controls.Add(this.RoomBox);
             this.Controls.Add(this.outputConsole);
             this.Controls.Add(this.InvBox);
@@ -117,13 +130,13 @@ namespace BlueTeamGroupProject
         }
 
         #endregion
-
-        private System.Windows.Forms.RichTextBox myConsole;
         private System.Windows.Forms.PictureBox myScreen;
         private System.Windows.Forms.PictureBox myInventory;
         private System.Windows.Forms.RichTextBox InvBox;
         private System.Windows.Forms.RichTextBox outputConsole;
         private System.Windows.Forms.RichTextBox RoomBox;
+        private System.Windows.Forms.RichTextBox InputBox;
+        public System.Windows.Forms.RichTextBox myConsole;
     }
 }
 

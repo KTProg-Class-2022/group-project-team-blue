@@ -74,5 +74,17 @@ namespace BlueTeamGroupProject
                 }
             }
         }
+
+        public void chexit(Locations.Direction Placement, Room room, string whichWay)
+        {
+            foreach ((Locations.Direction a, Room b) in Exits)
+            {
+
+                if (a == Placement && b == room)
+                {
+                    
+                }
+            }
+        }
     }
 }
