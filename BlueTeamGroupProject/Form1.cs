@@ -14,15 +14,17 @@ namespace BlueTeamGroupProject
     {
         public Dictionary<string, Func<string[], System.Object>> actionList = new Dictionary<string, Func<string[], System.Object>>();
         Character PlayInv = new Character("Player Inventory");
+        Room basic = new Room(Room.RoomType.Normal, "Basic", new List<object>(), "Its just a room");
         Room start = new Room(Room.RoomType.Normal, "Start", new List<object>(), "Its a bouncy Castle");
-        
+        Room secondRoom = new Room(Room.RoomType.Normal, "Second", new List<object>(), "This is the second room");
+
+
         public Form1()
         {
             InitializeComponent();
             actionList.Add("USE", getUseAction);
-            Room secondRoom = new Room(Room.RoomType.Normal, "Second", new List<object>(), "This is the second room");
-            start.addExit(Locations.Direction.North, secondRoom);
-            
+            basic.addExit(Locations.Direction.North, secondRoom);
+            secondRoom.addExit(Locations.Direction.South, start);
 
         }
         
@@ -48,14 +50,48 @@ namespace BlueTeamGroupProject
             
             InvBox.Text = string.Join(", ", PlayInv.inv.getStuff());
             
-            myConsoleOut.Text = "There is a Weapon on the ground. Will you Pick it up? (type 'GRAB' to pick it up)\n";
+            myConsole.Text = "There is a Weapon on the ground. Will you Pick it up? (type 'GRAB' to pick it up)\n";
 
         }
         string pastInput = "";
         private void myConsole_KeyDown(object sender, KeyEventArgs e)
         {
+            Result testResult = new Result();
+            Result[] groupOfResults = { testResult };
+            Result[][] doubleGroupingResults = { groupOfResults };
+            if (e.KeyData == Keys.Enter)
+            {
+                pastInput += myConsole.Text.Last();
+                sendCommand(pastInput.Split(' '));
+                Weapon GODSTICK = new Weapon("Holy Stick of Sticks!!!!", groupOfResults);
+                PlayInv.inv.addStuff(GODSTICK);
+                InvBox.Text = string.Join("\n", PlayInv.inv.getStuff());
 
-           
+                Console.WriteLine("Enter Pressed");
+
+                pastInput = "";
+                e.Handled = true;
+
+            }
+            else if (e.KeyData == Keys.R)
+            {
+                outputConsole.Text += basic.Name;
+            }
+            else if (e.KeyData == Keys.U)
+            {
+                basic = start;
+            }
+            else if (e.KeyData == Keys.K)
+            {
+                basic = secondRoom;
+            }
+            else
+            {
+                if (myConsole.Text != "")
+                {
+                    pastInput += myConsole.Text.Last();
+                }
+            }
         }
         private void sendCommand(string[] input)
         {
@@ -97,9 +133,12 @@ namespace BlueTeamGroupProject
                     }
                 }
             }
-
-
             return (true);
+        }
+
+        private void InputBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void myConsole_KeyDown_1(object sender, KeyEventArgs e)
@@ -116,7 +155,7 @@ namespace BlueTeamGroupProject
                 InvBox.Text = string.Join("\n", PlayInv.inv.getStuff());
 
                 Console.WriteLine("Enter Pressed");
-                myConsoleOut.Text += myConsole.Text + '\n';
+                myConsole.Text += myConsole.Text + '\n';
                
                 myConsole.Text = "";
                 e.Handled = true;

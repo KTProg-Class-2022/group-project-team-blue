@@ -35,22 +35,21 @@ namespace BlueTeamGroupProject
             this.InvBox = new System.Windows.Forms.RichTextBox();
             this.outputConsole = new System.Windows.Forms.RichTextBox();
             this.RoomBox = new System.Windows.Forms.RichTextBox();
-            this.myConsole = new System.Windows.Forms.RichTextBox();
+            this.InputBox = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.myScreen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myInventory)).BeginInit();
             this.SuspendLayout();
             // 
             // myConsoleOut
             // 
-            this.myConsoleOut.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.myConsoleOut.Location = new System.Drawing.Point(12, 330);
-            this.myConsoleOut.Name = "myConsoleOut";
-            this.myConsoleOut.ReadOnly = true;
-            this.myConsoleOut.Size = new System.Drawing.Size(488, 147);
-            this.myConsoleOut.TabIndex = 0;
-            this.myConsoleOut.Text = "";
-            this.myConsoleOut.TextChanged += new System.EventHandler(this.myConsole_TextChanged);
-            this.myConsoleOut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.myConsole_KeyDown);
+            this.myConsole.Location = new System.Drawing.Point(12, 330);
+            this.myConsole.Name = "myConsole";
+            this.myConsole.ReadOnly = true;
+            this.myConsole.Size = new System.Drawing.Size(488, 75);
+            this.myConsole.TabIndex = 0;
+            this.myConsole.Text = "";
+            this.myConsole.TextChanged += new System.EventHandler(this.myConsole_TextChanged);
+            this.myConsole.KeyDown += new System.Windows.Forms.KeyEventHandler(this.myConsole_KeyDown);
             // 
             // myScreen
             // 
@@ -99,14 +98,15 @@ namespace BlueTeamGroupProject
             this.RoomBox.TabIndex = 5;
             this.RoomBox.Text = "";
             // 
-            // myConsole
+            // InputBox
             // 
-            this.myConsole.Location = new System.Drawing.Point(12, 428);
-            this.myConsole.Name = "myConsole";
-            this.myConsole.Size = new System.Drawing.Size(488, 49);
-            this.myConsole.TabIndex = 6;
-            this.myConsole.Text = "";
-            this.myConsole.KeyDown += new System.Windows.Forms.KeyEventHandler(this.myConsole_KeyDown_1);
+            this.InputBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.InputBox.Location = new System.Drawing.Point(12, 416);
+            this.InputBox.Name = "InputBox";
+            this.InputBox.Size = new System.Drawing.Size(488, 61);
+            this.InputBox.TabIndex = 0;
+            this.InputBox.Text = "";
+            this.InputBox.TextChanged += new System.EventHandler(this.InputBox_TextChanged);
             // 
             // Form1
             // 
@@ -114,7 +114,7 @@ namespace BlueTeamGroupProject
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::BlueTeamGroupProject.Properties.Resources.borderBeta1;
             this.ClientSize = new System.Drawing.Size(820, 489);
-            this.Controls.Add(this.myConsole);
+            this.Controls.Add(this.InputBox);
             this.Controls.Add(this.RoomBox);
             this.Controls.Add(this.outputConsole);
             this.Controls.Add(this.InvBox);
@@ -130,14 +130,13 @@ namespace BlueTeamGroupProject
         }
 
         #endregion
-
-        private System.Windows.Forms.RichTextBox myConsoleOut;
         private System.Windows.Forms.PictureBox myScreen;
         private System.Windows.Forms.PictureBox myInventory;
         private System.Windows.Forms.RichTextBox InvBox;
         private System.Windows.Forms.RichTextBox outputConsole;
         private System.Windows.Forms.RichTextBox RoomBox;
-        private System.Windows.Forms.RichTextBox myConsole;
+        private System.Windows.Forms.RichTextBox InputBox;
+        public System.Windows.Forms.RichTextBox myConsole;
     }
 }
 

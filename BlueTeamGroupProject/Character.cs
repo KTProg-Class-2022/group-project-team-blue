@@ -56,11 +56,11 @@ namespace BlueTeamGroupProject
         }
         public void playerAdd(object item)
         {
-            player.addStuff(item);
+            this.inv.addStuff(item);
         }
-        public string playerValue()
+        public (List<Weapon>, List<Item>) playerValue()
         {
-            return player.getValues();
+            return this.inv.getValues();
         }
 
 
@@ -68,7 +68,7 @@ namespace BlueTeamGroupProject
 
         public List<object> playerStuff()
         {
-            return player.getStuff();
+            return this.inv.getStuff();
         }
         
 
