@@ -43,10 +43,12 @@ namespace BlueTeamGroupProject
             // myConsoleOut
             // 
             this.myConsoleOut.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.myConsoleOut.HideSelection = false;
             this.myConsoleOut.Location = new System.Drawing.Point(12, 330);
             this.myConsoleOut.Name = "myConsoleOut";
             this.myConsoleOut.ReadOnly = true;
-            this.myConsoleOut.Size = new System.Drawing.Size(488, 147);
+            this.myConsoleOut.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.myConsoleOut.Size = new System.Drawing.Size(515, 100);
             this.myConsoleOut.TabIndex = 0;
             this.myConsoleOut.Text = "";
             this.myConsoleOut.TextChanged += new System.EventHandler(this.myConsole_TextChanged);
@@ -75,6 +77,7 @@ namespace BlueTeamGroupProject
             // 
             this.InvBox.Location = new System.Drawing.Point(554, 12);
             this.InvBox.Name = "InvBox";
+            this.InvBox.ReadOnly = true;
             this.InvBox.Size = new System.Drawing.Size(254, 161);
             this.InvBox.TabIndex = 3;
             this.InvBox.Text = "";
@@ -85,6 +88,7 @@ namespace BlueTeamGroupProject
             this.outputConsole.ForeColor = System.Drawing.SystemColors.Menu;
             this.outputConsole.Location = new System.Drawing.Point(533, 330);
             this.outputConsole.Name = "outputConsole";
+            this.outputConsole.ReadOnly = true;
             this.outputConsole.Size = new System.Drawing.Size(275, 147);
             this.outputConsole.TabIndex = 4;
             this.outputConsole.Text = "";
@@ -95,6 +99,7 @@ namespace BlueTeamGroupProject
             this.RoomBox.ForeColor = System.Drawing.Color.Red;
             this.RoomBox.Location = new System.Drawing.Point(565, 182);
             this.RoomBox.Name = "RoomBox";
+            this.RoomBox.ReadOnly = true;
             this.RoomBox.Size = new System.Drawing.Size(232, 132);
             this.RoomBox.TabIndex = 5;
             this.RoomBox.Text = "";
@@ -103,7 +108,7 @@ namespace BlueTeamGroupProject
             // 
             this.myConsole.Location = new System.Drawing.Point(12, 428);
             this.myConsole.Name = "myConsole";
-            this.myConsole.Size = new System.Drawing.Size(488, 49);
+            this.myConsole.Size = new System.Drawing.Size(515, 49);
             this.myConsole.TabIndex = 6;
             this.myConsole.Text = "";
             this.myConsole.KeyDown += new System.Windows.Forms.KeyEventHandler(this.myConsole_KeyDown_1);
@@ -112,7 +117,10 @@ namespace BlueTeamGroupProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImage = global::BlueTeamGroupProject.Properties.Resources.borderBeta1;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(820, 489);
             this.Controls.Add(this.myConsole);
             this.Controls.Add(this.RoomBox);
@@ -121,6 +129,7 @@ namespace BlueTeamGroupProject
             this.Controls.Add(this.myInventory);
             this.Controls.Add(this.myScreen);
             this.Controls.Add(this.myConsoleOut);
+            this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.myScreen)).EndInit();

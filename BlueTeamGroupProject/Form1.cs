@@ -48,7 +48,7 @@ namespace BlueTeamGroupProject
             
             InvBox.Text = string.Join(", ", PlayInv.inv.getStuff());
             
-            myConsoleOut.Text = "There is a Weapon on the ground. Will you Pick it up? (type 'GRAB' to pick it up)\n";
+            myConsoleOut.AppendText("There is a Weapon on the ground. Will you Pick it up? (type 'GRAB' to pick it up)\n");
 
         }
         string pastInput = "";
@@ -93,7 +93,16 @@ namespace BlueTeamGroupProject
                     Console.WriteLine(wep.Name);
                     if (wep.Name.ToUpper() == selection.ToUpper())
                     {
-                        outputConsole.Text += "\n" + wep.Name;
+                        outputConsole.AppendText("\n" + wep.Name);
+                    }
+                }
+                if(obj is Item)
+                {
+                    Item item = obj as Item;
+                    Console.WriteLine(item.Name);
+                    if (item.Name.ToUpper() == selection.ToUpper())
+                    {
+                        outputConsole.AppendText("\n" + item.Name);
                     }
                 }
             }
@@ -116,7 +125,7 @@ namespace BlueTeamGroupProject
                 InvBox.Text = string.Join("\n", PlayInv.inv.getStuff());
 
                 Console.WriteLine("Enter Pressed");
-                myConsoleOut.Text += myConsole.Text + '\n';
+                myConsoleOut.AppendText(myConsole.Text + '\n');
                
                 myConsole.Text = "";
                 e.Handled = true;
