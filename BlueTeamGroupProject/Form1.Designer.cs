@@ -29,7 +29,7 @@ namespace BlueTeamGroupProject
         /// </summary>
         private void InitializeComponent()
         {
-            this.myConsole = new System.Windows.Forms.RichTextBox();
+            this.myConsoleOut = new System.Windows.Forms.RichTextBox();
             this.myScreen = new System.Windows.Forms.PictureBox();
             this.myInventory = new System.Windows.Forms.PictureBox();
             this.InvBox = new System.Windows.Forms.RichTextBox();
@@ -40,7 +40,7 @@ namespace BlueTeamGroupProject
             ((System.ComponentModel.ISupportInitialize)(this.myInventory)).BeginInit();
             this.SuspendLayout();
             // 
-            // myConsole
+            // myConsoleOut
             // 
             this.myConsole.Location = new System.Drawing.Point(12, 330);
             this.myConsole.Name = "myConsole";
@@ -120,7 +120,7 @@ namespace BlueTeamGroupProject
             this.Controls.Add(this.InvBox);
             this.Controls.Add(this.myInventory);
             this.Controls.Add(this.myScreen);
-            this.Controls.Add(this.myConsole);
+            this.Controls.Add(this.myConsoleOut);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.myScreen)).EndInit();
