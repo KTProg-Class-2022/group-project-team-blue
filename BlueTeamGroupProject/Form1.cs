@@ -50,7 +50,7 @@ namespace BlueTeamGroupProject
             
             InvBox.Text = string.Join(", ", PlayInv.inv.getStuff());
             
-            myConsoleOut.Text = "There is a Weapon on the ground. Will you Pick it up? (type 'GRAB' to pick it up)\n";
+            myConsole.Text = "There is a Weapon on the ground. Will you Pick it up? (type 'GRAB' to pick it up)\n";
 
         }
         string pastInput = "";
@@ -155,7 +155,7 @@ namespace BlueTeamGroupProject
                 InvBox.Text = string.Join("\n", PlayInv.inv.getStuff());
 
                 Console.WriteLine("Enter Pressed");
-                myConsoleOut.Text += myConsole.Text + '\n';
+                myConsole.Text += myConsole.Text + '\n';
                
                 myConsole.Text = "";
                 e.Handled = true;
