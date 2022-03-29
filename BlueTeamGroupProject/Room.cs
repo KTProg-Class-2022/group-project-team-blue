@@ -74,5 +74,20 @@ namespace BlueTeamGroupProject
                 }
             }
         }
+        public Room getExit(Locations.Direction direction)
+        {
+            Room returnRoom;
+            try
+            {
+                returnRoom = Exits.Single(c => c.Item1 == direction).Item2;
+            }
+            catch
+            {
+                returnRoom = this;
+            }
+            return returnRoom;
+            
+            
+        }
     }
 }
