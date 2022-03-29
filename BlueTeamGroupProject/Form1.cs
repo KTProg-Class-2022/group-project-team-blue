@@ -13,14 +13,23 @@ namespace BlueTeamGroupProject
     public partial class Form1 : Form
     {
 
+        Room current;
+        Room testy = new Room(Room.RoomType.Combat, "Bum", new List<object>(), "bummy");
+        Room EastRoom = new Room(Room.RoomType.Travel, "Room", new List<object>(), "This room is in the east");
         public Form1()
         {
             InitializeComponent();
             actionList.Add("Use", getUseAction);
-
+            makeRooms();
+        }
+        public void makeRooms()
+        {
+            current = testy;
+            testy.addExit(BlueTeamGroupProject.Location.Direction.East, EastRoom);
         }
         public Dictionary<string, Func<string[],  System.Object>> actionList = new Dictionary<string, Func<string[], System.Object>>();
         Inventory testInv = new Inventory("Player Inventory");
+        
         private void myScreen_Click(object sender, EventArgs e)
         {
 
@@ -32,7 +41,20 @@ namespace BlueTeamGroupProject
             Item testItem = new Item("Glass", new string[] { "Attack" }, doubleGroupingResults);
             testInv.addStuff(testItem);
             testInv.addStuff(testWeapon);
-            
+
+            Console.WriteLine(current.Name);
+            Console.WriteLine(current.Desc);
+            Console.WriteLine(current.Category);
+            Console.WriteLine(current.ItemList.Name);
+
+            current.ItemList.addStuff(testItem);
+
+            Console.WriteLine(current.ItemList.getStuff());
+
+            current = EastRoom;
+
+            //Console.WriteLine(current.Exits);
+
         }
 
         private void myConsole_KeyDown(object sender, KeyEventArgs e)

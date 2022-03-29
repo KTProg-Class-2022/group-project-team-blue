@@ -45,7 +45,7 @@ namespace BlueTeamGroupProject
         {
             get { return _desc; }
         }
-        Room(RoomType Type, String name, List<object> objects, string description)
+        public Room(RoomType Type, String name, List<object> objects, string description)
         {
             _name = name;
             _itemlist = new Inventory(name + "_Room");
