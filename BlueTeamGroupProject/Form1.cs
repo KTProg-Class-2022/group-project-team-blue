@@ -13,7 +13,7 @@ namespace BlueTeamGroupProject
     public partial class Form1 : Form
     {
         public Dictionary<string, Func<string[], System.Object>> actionList = new Dictionary<string, Func<string[], System.Object>>();
-        Character PlayInv = new Character("Player Inventory");
+        Character Player = new Character("Player Inventory");
         Room start = new Room(Room.RoomType.Normal, "Start", new List<object>(), "Its a bouncy Castle");
         
         public Form1()
@@ -42,11 +42,11 @@ namespace BlueTeamGroupProject
             Weapon MangoMace = new Weapon("MangoMace", groupOfResults);
             start.ItemList.addStuff(BouncyBall);
             start.ItemList.addStuff(MangoMace);
+
+            Player.inv.addStuff(testWeapon);
+            Player.inv.addStuff(testItem);
             
-            PlayInv.inv.addStuff(testWeapon);
-            PlayInv.inv.addStuff(testItem);
-            
-            InvBox.Text = string.Join(", ", PlayInv.inv.getStuff());
+            InvBox.Text = string.Join(", ", Player.inv.getStuff());
             
             myConsoleOut.AppendText("There is a Weapon on the ground. Will you Pick it up? (type 'GRAB' to pick it up)\n");
 
@@ -85,7 +85,7 @@ namespace BlueTeamGroupProject
             string selection = string.Join(" ", weapon.Skip(1));
             Console.WriteLine("Wow thats a weapon!");
             Console.WriteLine("You Chose: " + selection);
-            foreach(object obj in PlayInv.inv.getStuff())
+            foreach(object obj in Player.inv.getStuff())
             {
                 if (obj is Weapon)
                 {
@@ -121,8 +121,8 @@ namespace BlueTeamGroupProject
                
                 sendCommand(myConsole.Text.Split(' '));
                 Weapon GODSTICK = new Weapon("Holy Stick of Sticks!!!!", groupOfResults);
-                PlayInv.inv.addStuff(GODSTICK);
-                InvBox.Text = string.Join("\n", PlayInv.inv.getStuff());
+                Player.inv.addStuff(GODSTICK);
+                InvBox.Text = string.Join("\n", Player.inv.getStuff());
 
                 Console.WriteLine("Enter Pressed");
                 myConsoleOut.AppendText(myConsole.Text + '\n');
