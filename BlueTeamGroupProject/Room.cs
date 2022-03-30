@@ -25,10 +25,12 @@ namespace BlueTeamGroupProject
             Static,
             Travel,
             Dungeon,
-            Combat
+            Combat,
+            Normal
         }
 
-        private List<(Location.Direction, Room)> Exits = new List<(Location.Direction, Room)>();
+        private List<(Locations.Direction, Room)> Exits = new List<(Locations.Direction, Room)>();
+
         private RoomType _category;
         public RoomType Category
         {
@@ -45,7 +47,7 @@ namespace BlueTeamGroupProject
         {
             get { return _desc; }
         }
-        public Room(RoomType Type, String name, List<object> objects, string description)
+        public Room(RoomType Type, String name, List<object> items, string description)
         {
             _name = name;
             _itemlist = new Inventory(name + "_Room");
@@ -64,13 +66,13 @@ namespace BlueTeamGroupProject
             
         }
 
-        public void addExit(Location.Direction direction, Room place)
+        public void addExit(Locations.Direction direction, Room place)
         {
             Exits.Append((direction, place));
         }
-        public void removeExit(Location.Direction Placement, Room room)
+        public void removeExit(Locations.Direction Placement, Room room)
         {
-            foreach ((Location.Direction a, Room b) in Exits)
+            foreach ((Locations.Direction a, Room b) in Exits)
             {
                 
                 if (a == Placement && b == room)
@@ -78,6 +80,21 @@ namespace BlueTeamGroupProject
                     Exits.Remove((a,b));
                 }
             }
+        }
+        public Room getExit(Locations.Direction direction)
+        {
+            Room returnRoom;
+            try
+            {
+                returnRoom = Exits.Single(c => c.Item1 == direction).Item2;
+            }
+            catch
+            {
+                returnRoom = this;
+            }
+            return returnRoom;
+            
+            
         }
     }
 }
