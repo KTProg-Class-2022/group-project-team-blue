@@ -14,9 +14,16 @@ namespace BlueTeamGroupProject
             get { return _name; }
             set { _name = value; }
         }
+
+        private string _desc;
+        public string Desc
+        {
+            get { return _desc; }
+            set { _desc= value; }
+        }
         //Dictionary<string, string> actions = new Dictionary<string, string>();
-        
-        public Item(string name, string[] Commands, Result[][] Results)
+
+        public Item(string name, string Desc, string[] Commands, Result[][] Results)
         {
             _name = name;
             if (Commands.Length != Results.Length)
@@ -35,6 +42,9 @@ namespace BlueTeamGroupProject
         {
             actions[Command] = Result;
         }
-
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
