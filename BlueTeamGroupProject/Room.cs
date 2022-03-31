@@ -52,7 +52,7 @@ namespace BlueTeamGroupProject
             _name = name;
             _itemlist = new Inventory(name + "_Room");
             _category = Type;
-            foreach (object obj in objects)
+            foreach (object obj in items)
             {
                 if (obj is Item)
                 {
