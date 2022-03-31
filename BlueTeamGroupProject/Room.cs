@@ -52,16 +52,9 @@ namespace BlueTeamGroupProject
             _name = name;
             _itemlist = new Inventory(name + "_Room");
             _category = Type;
-            foreach (object obj in items)
+            foreach (Item item in items)
             {
-                if (obj is Item)
-                {
-                    _itemlist.addStuff(obj as Item);
-                }
-                else if(obj is Weapon)
-                {
-                    _itemlist.addStuff(obj as Weapon);
-                }
+                _itemlist.addStuff(item);
             }
             
         }
