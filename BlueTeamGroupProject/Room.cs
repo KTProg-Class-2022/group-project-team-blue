@@ -29,7 +29,7 @@ namespace BlueTeamGroupProject
             Normal
         }
 
-        private List<(Locations.Direction, Room)> Exits = new List<(Locations.Direction, Room)>();
+        private Dictionary<Locations.Direction, Room> Exits = new Dictionary<Locations.Direction, Room>();
 
         private RoomType _category;
         public RoomType Category
@@ -54,23 +54,23 @@ namespace BlueTeamGroupProject
             _category = Type;
             foreach (object obj in items)
             {
-                _itemlist.addStuff(item);
+                _itemlist.addStuff(obj);
             }
             
         }
 
         public void addExit(Locations.Direction direction, Room place)
         {
-            Exits.Append((direction, place));
+            Exits[direction] =  place;
         }
         public void removeExit(Locations.Direction Placement, Room room)
         {
-            foreach ((Locations.Direction a, Room b) in Exits)
+            foreach (var value in Exits)
             {
                 
-                if (a == Placement && b == room)
+                if (value.Key == Placement && value.Value == room)
                 {
-                    Exits.Remove((a,b));
+                    Exits[value.Key] = null;
                 }
             }
         }
@@ -79,7 +79,7 @@ namespace BlueTeamGroupProject
             Room returnRoom;
             try
             {
-                returnRoom = Exits.Single(c => c.Item1 == direction).Item2;
+                returnRoom = Exits.Single(c => c.Key == direction).Value;
             }
             catch
             {
