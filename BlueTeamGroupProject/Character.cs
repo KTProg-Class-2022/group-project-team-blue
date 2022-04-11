@@ -54,6 +54,19 @@ namespace BlueTeamGroupProject
         {
             return null;
         }
+        public bool Hit(int amount)
+        {
+            int hitAmount = (amount - Armor);
+            if (hitAmount <= 0)
+            {
+                return (false);
+            }
+            else
+            {
+                Health -= hitAmount;
+                return (true);
+            }
+        }
         
 
 
