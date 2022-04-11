@@ -23,6 +23,8 @@ namespace BlueTeamGroupProject
             current = start;
             InitializeComponent();
             actionList.Add("USE", getUseAction);
+            
+            
             Room secondRoom = new Room(Room.RoomType.Normal, "Second", new List<object>(), "This is the second room");
             start.addExit(Locations.Direction.North, secondRoom);
             
