@@ -14,18 +14,22 @@ namespace BlueTeamGroupProject
     {
         public Dictionary<string, Func<string[], System.Object>> actionList = new Dictionary<string, Func<string[], System.Object>>();
         Character Player = new Character("Player Inventory");
+        Character Enemy = new Character("Enemy Inventory");
         Room start = new Room(Room.RoomType.Normal, "Start", new List<object>(), "Its a bouncy Castle");
         
         public Form1()
         {
             InitializeComponent();
             actionList.Add("USE", getUseAction);
+            actionList.Add("ATTACK", startcombat);
+            actionList.Add("SELECT", SelectEnemy);
             Room secondRoom = new Room(Room.RoomType.Normal, "Second", new List<object>(), "This is the second room");
             start.addExit(Locations.Direction.North, secondRoom);
             
 
         }
         
+
         private void myScreen_Click(object sender, EventArgs e)
         {
             start.ItemList = new Inventory("Start Items");
@@ -43,15 +47,17 @@ namespace BlueTeamGroupProject
             start.ItemList.addStuff(BouncyBall);
             start.ItemList.addStuff(MangoMace);
 
-            Player.inv.addStuff(testWeapon);
             Player.inv.addStuff(testItem);
-            
+            Player.inv.addStuff(BouncyBall);
+            Player.inv.addStuff(MangoMace);
+
+            Enemy.inv.addStuff(testWeapon);
+
             InvBox.Text = string.Join(", ", Player.inv.getStuff());
             
             myConsoleOut.AppendText("There is a Weapon on the ground. Will you Pick it up? (type 'GRAB' to pick it up)\n");
 
         }
-        string pastInput = "";
         private void myConsole_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -83,8 +89,8 @@ namespace BlueTeamGroupProject
                 return 0;
             }
             string selection = string.Join(" ", weapon.Skip(1));
-            Console.WriteLine("Wow thats a weapon!");
-            Console.WriteLine("You Chose: " + selection);
+            myConsoleOut.AppendText("Wow thats a weapon!");
+            myConsoleOut.AppendText("You Chose: " + selection);
             foreach(object obj in Player.inv.getStuff())
             {
                 if (obj is Weapon)
@@ -106,12 +112,70 @@ namespace BlueTeamGroupProject
                     }
                 }
             }
+            return (true);
+        }
+        private System.Object startcombat(string[] weapon, string[] enemy)
+        {
 
 
+
+
+            return null;
+        }
+        private System.Object getAttackAction(string[] weapon)
+        {
+
+            if (weapon.Length <= 1)
+            {
+                return 0;
+            }
+            string selection = string.Join(" ", weapon.Skip(1));
+            foreach (object obj in Player.inv.getStuff())
+            {
+                if (obj is Weapon)
+                {
+                    Weapon wep = obj as Weapon;
+                    Console.WriteLine(wep.Name);
+                    if (wep.Name.ToUpper() == selection.ToUpper())
+                    {
+                        outputConsole.AppendText("\n" + wep.Name);
+                    }
+                }
+                if (obj is Item)
+                {
+                    Item item = obj as Item;
+                    Console.WriteLine(item.Name);
+                    if (item.Name.ToUpper() == selection.ToUpper())
+                    {
+                        outputConsole.AppendText("\n" + item.Name);
+                    }
+                }
+            }
+            if (enemy[1] == "")
+            {
+                myConsoleOut.AppendText("You Swing your " + selection + " But wait... Who are you attacking?! \n");
+            }
+            else
+            {
+                SelectEnemy(enemy);
+            }
             return (true);
         }
 
-        private void myConsole_KeyDown_1(object sender, KeyEventArgs e)
+        private System.Object SelectEnemy(string[] selected)
+        {
+            if (selected[1] == "Enemy")
+            {
+                myConsoleOut.AppendText("You swing your weapon at the " + selected[1] + " and defeat it!!! your prize is a smile :3 \n");
+            }
+            else
+            {
+                myConsoleOut.AppendText("im sorry, WHO did you select? \n");
+            }
+
+            return null;
+        }
+            private void myConsole_KeyDown_1(object sender, KeyEventArgs e)
         {
             Result testResult = new Result();
             Result[] groupOfResults = { testResult };
