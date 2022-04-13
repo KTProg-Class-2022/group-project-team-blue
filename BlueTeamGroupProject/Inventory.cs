@@ -27,6 +27,10 @@ namespace BlueTeamGroupProject
         {
             Content.Add(item);
         }
+        public void removeStuff(object item)
+        {
+            Content.Remove(item);
+        }
         public List<object> getStuff()
         {
             return (Content);

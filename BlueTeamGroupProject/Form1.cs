@@ -23,12 +23,16 @@ namespace BlueTeamGroupProject
             current = start;
             InitializeComponent();
             actionList.Add("USE", getUseAction);
+            actionList.Add("GRAB", getGrabAction);
+            actionList.Add("GO", moveHereAction);
             Room secondRoom = new Room(Room.RoomType.Normal, "Second", new List<object>(), "This is the second room");
             start.addExit(Locations.Direction.North, secondRoom);
-            
+
+            myConsoleOut.AppendText("Welcome! Click the screen to begin." + '\n');
+
 
         }
-        
+
         private void myScreen_Click(object sender, EventArgs e)
         {
             start.ItemList = new Inventory("Start Items");
@@ -51,13 +55,16 @@ namespace BlueTeamGroupProject
             
             InvBox.Text = string.Join(", ", Player.inv.getStuff());
 
-            myConsoleOut.AppendText("You are in " + current.Name);
-            myConsoleOut.AppendText("There is a Weapon on the ground. Will you Pick it up? (type 'GRAB' to pick it up)\n");
+            myConsoleOut.AppendText("You are in " + current.Name + '\n');
+            myConsoleOut.AppendText(current.ItemList.Name + '\n');
 
-            current = current.getExit(Locations.Direction.North);
+            Console.WriteLine(current.ItemList.getStuff());
+            myConsoleOut.AppendText("It's a bedroom." + '\n');
+            myConsoleOut.AppendText("The bed is as messy as can be. There's a closet to the right of YOU, and a dresser against the wall." + '\n');
+            myConsoleOut.AppendText("The door is to the NORTH." + '\n');
+
 
         }
-        string pastInput = "";
         private void myConsole_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -113,6 +120,128 @@ namespace BlueTeamGroupProject
                 }
             }
 
+
+            return (true);
+        }
+        private System.Object getGrabAction(string[] weapon)
+        {
+            bool found = false;
+            object ect = null;
+            if (weapon.Length <= 1)
+            {
+                return 0;
+            }
+            string selection = string.Join(" ", weapon.Skip(1));
+            Console.WriteLine("You grabbed: " + selection);
+            foreach (object obj in current.ItemList.getStuff())
+            {
+                if (obj is Weapon)
+                {
+                    Weapon wep = obj as Weapon;
+                    if (wep.Name.ToUpper() == selection.ToUpper())
+                    {
+                        outputConsole.AppendText("\n" + "You got the: " + wep.Name);
+                        Player.inv.addStuff(wep);
+                        ect = wep;
+                        found = true;
+                        break;
+                    }
+                }
+                if (obj is Item)
+                {
+                    Item item = obj as Item;
+                    if (item.Name.ToUpper() == selection.ToUpper())
+                    {
+                        outputConsole.AppendText("\n" + "You got the: " + item.Name);
+                        Player.inv.addStuff(item);
+                        ect = item;
+                        found = true;
+                        break;
+                    }
+                }
+            }
+
+            if (found)
+            {
+                current.ItemList.removeStuff(ect);
+            } else
+            {
+                myConsoleOut.AppendText("There's no such item in this room...\n");
+            }
+
+            foreach (object obj in Player.inv.getStuff())
+            {
+                if (obj is Weapon)
+                {
+                    Weapon wep = obj as Weapon;
+                    Console.WriteLine(wep.Name);
+                }
+                if (obj is Item)
+                {
+                    Item item = obj as Item;
+                    Console.WriteLine(item.Name);
+                }
+            }
+
+
+            return (true);
+        }
+
+        private System.Object moveHereAction(string[] direction)
+        {
+            string newdir = string.Join(" ", direction.Skip(1));
+            newdir = newdir.ToUpper();
+
+            switch (newdir)
+            {
+                case ("NORTH"):
+
+                    if (current.getExit(Locations.Direction.North) != null)
+                    {
+                        current = current.getExit(Locations.Direction.North);
+                       
+                    } else
+                    {
+                        myConsoleOut.AppendText("There's a wall that way...\n");
+                    }
+                    break;
+
+                case ("SOUTH"):
+                    if (current.getExit(Locations.Direction.South) != null)
+                    {
+                        current = current.getExit(Locations.Direction.South);
+                       
+                    }
+                    else
+                    {
+                        myConsoleOut.AppendText("There's a wall that way...\n");
+                    }
+                    break;
+
+                case ("WEST"):
+                    if (current.getExit(Locations.Direction.West) != null)
+                    {
+                        current = current.getExit(Locations.Direction.West);
+                        
+                    }
+                    else
+                    {
+                        myConsoleOut.AppendText("There's a wall that way...\n");
+                    }
+                    break;
+
+                case ("EAST"):
+                    if (current.getExit(Locations.Direction.East) != null)
+                    {
+                        current = current.getExit(Locations.Direction.East);
+                        
+                    }
+                    else
+                    {
+                        myConsoleOut.AppendText("There's a wall that way...\n");
+                    }
+                    break;
+            }
 
             return (true);
         }
