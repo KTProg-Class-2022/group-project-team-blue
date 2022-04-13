@@ -42,7 +42,7 @@ namespace BlueTeamGroupProject
         }
         public bool[] Utilize()
         {
-            bool[] Succeed;
+            bool[] Succeed = { };
             foreach(Result result in Attack)
             {
 

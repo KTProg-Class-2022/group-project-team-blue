@@ -25,7 +25,7 @@ namespace BlueTeamGroupProject
             InitializeComponent();
             actionList.Add("USE", getUseAction);
             actionList.Add("ATTACK", startcombat);
-            actionList.Add("SELECT", SelectEnemy);
+            actionList.Add("EQUIP", Equiped);
             Room secondRoom = new Room(Room.RoomType.Normal, "Second", new List<object>(), "This is the second room");
             start.addExit(Locations.Direction.North, secondRoom);
             
@@ -47,6 +47,7 @@ namespace BlueTeamGroupProject
             Item testItem = new Item("Glass", "a piece of glass", new string[] { "Attack" }, doubleGroupingResults);
             Item BouncyBall = new Item("Bouncy Ball", "A ball that bounces...", new string[] { "Attack" }, doubleGroupingResults);
             Weapon MangoMace = new Weapon("MangoMace", groupOfResults);
+            Result Damage = new Result("Damage", Result.Targets.Enemy, Character.Stats.HP, Player.getDMG(), 1, false);
             start.ItemList.addStuff(BouncyBall);
             start.ItemList.addStuff(MangoMace);
 
@@ -120,15 +121,21 @@ namespace BlueTeamGroupProject
             }
             return (true);
         }
-        private System.Object startcombat(string[] weapon, string[] enemy)
+        private System.Object startcombat(string[] input)
         {
-
-
+            try
+            {
+                getAttackAction(input[1], input[2]);
+            }
+            catch
+            {
+                myConsoleOut.AppendText("You need to specify what weapon and who you are attacking\n");
+            }
 
 
             return null;
         }
-        private System.Object getAttackAction(string[] weapon)
+        private System.Object getAttackAction(string weapon, string enemy)
         {
 
             if (weapon.Length <= 1)
@@ -157,7 +164,7 @@ namespace BlueTeamGroupProject
                     }
                 }
             }
-            if (enemy[1] == "")
+            if (enemy == "")
             {
                 myConsoleOut.AppendText("You Swing your " + selection + " But wait... Who are you attacking?! \n");
             }
@@ -167,12 +174,30 @@ namespace BlueTeamGroupProject
             }
             return (true);
         }
-
-        private System.Object SelectEnemy(string[] selected)
+        private System.Object Equiped(string[] weapon)
         {
-            if (selected[1] == "Enemy")
+            int displayedDmg = 0;
+            if (Player.inv.getStuff().Contains(weapon) == true)
             {
-                myConsoleOut.AppendText("You swing your weapon at the " + selected[1] + " and defeat it!!! your prize is a smile :3 \n");
+                Player.Equip((Weapon) Player.inv.getStuff()[ Player.inv.getStuff().IndexOf(weapon)]);
+                foreach(Result affect in Player.Equipped.Attack)
+                {
+                    if(affect.Affected == Character.Stats.HP)
+                    {
+                        displayedDmg += affect.Level;
+                        Player.setDMG(displayedDmg);
+                    }
+                }
+            }
+
+            return null;
+        }
+        private System.Object SelectEnemy(string selected)
+        {
+            if (selected == "Enemy")
+            {
+                myConsoleOut.AppendText("You swing your weapon at the " + selected[1] + " and dealt " + Player.getDMG() + " and defeated it!!! your prize is a smile :3 \n");
+                
             }
             else
             {
@@ -181,7 +206,7 @@ namespace BlueTeamGroupProject
 
             return null;
         }
-            private void myConsole_KeyDown_1(object sender, KeyEventArgs e)
+        private void myConsole_KeyDown_1(object sender, KeyEventArgs e)
         {
             Result testResult = new Result();
             Result[] groupOfResults = { testResult };

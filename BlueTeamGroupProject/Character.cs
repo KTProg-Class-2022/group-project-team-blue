@@ -9,7 +9,7 @@ namespace BlueTeamGroupProject
     class Character
     {
         
-        Weapon equip = null;
+        Weapon equipped = null;
         Item items = null;
         public Inventory inv;
 
@@ -28,6 +28,10 @@ namespace BlueTeamGroupProject
         public int getDMG()
         {
             return this.Damage;
+        }
+        public void setDMG(int value)
+        {
+            this.Damage = value;
         }
         private int Armor;
         public int getARMOR()
@@ -61,9 +65,14 @@ namespace BlueTeamGroupProject
         }
         
         
-        private Weapon Equipted()
+        public void Equip(Weapon chosen)
         {
-            return null;
+            this.equipped = chosen;
+            
+        }
+        public Weapon Equipped
+        {
+            get { return (equipped); }
         }
         public bool Hit(int amount)
         {
