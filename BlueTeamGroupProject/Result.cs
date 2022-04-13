@@ -8,6 +8,12 @@ namespace BlueTeamGroupProject
 {
     class Result
     {
+        private string _effect;
+        public string Effect
+        {
+            get { return (_effect); }
+            set { _effect = value; }
+        }
         public enum Targets
         {
             Enemy,
@@ -49,6 +55,7 @@ namespace BlueTeamGroupProject
 
         public Result(string Text = "inflicted",Targets target = Targets.None, Character.Stats stat = Character.Stats.None, int level = 1, int duration = 1, bool isIncreasing = false)
         {
+            this.Effect = Text;
             this.Target = target;
             this.Affected = stat;
             this._level = level;
@@ -56,13 +63,13 @@ namespace BlueTeamGroupProject
             this._isIncreasing = isIncreasing;
 
         }
-        public (Character.Stats, int) nextTurn()
+        public Result nextTurn()
         {
             if (Increasing)
             {
                 Level++;
             }
-            return (this.Affected, this.Level);
+            return (this);
         }
         public int getDuration()
         {

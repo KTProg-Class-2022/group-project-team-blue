@@ -40,6 +40,15 @@ namespace BlueTeamGroupProject
             _attack = result;
             
         }
+        public bool[] Utilize()
+        {
+            bool[] Succeed = { };
+            foreach(Result result in Attack)
+            {
+
+            }
+            return (Succeed);
+        }
         public override string ToString()
         {
             return Name;
