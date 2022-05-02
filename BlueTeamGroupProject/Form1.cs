@@ -46,8 +46,8 @@ namespace BlueTeamGroupProject
             Weapon testWeapon = new Weapon("Sword", groupOfResults);
             Item testItem = new Item("Glass", "a piece of glass", new string[] { "Attack" }, doubleGroupingResults);
             Item BouncyBall = new Item("Bouncy Ball", "A ball that bounces...", new string[] { "Attack" }, doubleGroupingResults);
-            Weapon MangoMace = new Weapon("MangoMace", groupOfResults);
             Result Damage = new Result("Damage", Result.Targets.Enemy, Character.Stats.HP, Player.getDMG(), 1, false);
+            Weapon MangoMace = new Weapon("MangoMace", new Result[] { Damage });
             start.ItemList.addStuff(BouncyBall);
             start.ItemList.addStuff(MangoMace);
 
@@ -125,6 +125,7 @@ namespace BlueTeamGroupProject
         {
             try
             {
+                //               Weapon     Enemy
                 getAttackAction(input[1], input[2]);
             }
             catch
@@ -176,16 +177,24 @@ namespace BlueTeamGroupProject
         }
         private System.Object Equiped(string[] weapon)
         {
+            Console.WriteLine("equip start");
             int displayedDmg = 0;
-            if (Player.inv.getStuff().Contains(weapon) == true)
+            Console.WriteLine(Player.inv.getStuff().Where(element => element is Weapon).Select(element => element = (element as Weapon).Name).FirstOrDefault());
+            var chosenWep = Player.inv.getStuff().Where(element => element is Weapon).Where(element => (element as Weapon).Name == string.Join(" ", weapon.Skip(1)));
+            Console.WriteLine(weapon);
+            if (Player.inv.getStuff().Where(element => element is Weapon).Where(element => (element as Weapon).Name == string.Join(" ", weapon.Skip(1))) != null)
             {
-                Player.Equip((Weapon) Player.inv.getStuff()[ Player.inv.getStuff().IndexOf(weapon)]);
-                foreach(Result affect in Player.Equipped.Attack)
+                Console.WriteLine("Found Item!!!");
+                Player.Equip((Weapon)(Player.inv.getStuff().Where(element => element is Weapon).Where(element => (element as Weapon).Name == string.Join(" ", weapon.Skip(1)))).FirstOrDefault());
+
+
+                foreach (Result affect in Player.Equipped.Attack)
                 {
-                    if(affect.Affected == Character.Stats.HP)
+                    if(affect.Affected == Character.Stats.HP && affect.Level > 0)
                     {
                         displayedDmg += affect.Level;
                         Player.setDMG(displayedDmg);
+                        Console.WriteLine(weapon + "; " + Player.getDMG());
                     }
                 }
             }
@@ -196,7 +205,7 @@ namespace BlueTeamGroupProject
         {
             if (selected == "Enemy")
             {
-                myConsoleOut.AppendText("You swing your weapon at the " + selected[1] + " and dealt " + Player.getDMG() + " and defeated it!!! your prize is a smile :3 \n");
+                myConsoleOut.AppendText("You swing your weapon at the " + selected + " and dealt " + Player.getDMG() + " and defeated it!!! your prize is a smile :3 \n");
                 
             }
             else
