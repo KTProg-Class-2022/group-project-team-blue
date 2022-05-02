@@ -51,7 +51,21 @@ namespace BlueTeamGroupProject
         }
         public override string ToString()
         {
-            return Name;
+            return Inspect();
+        }
+        private string Inspect()
+        {
+            string returnStr = _name + "\n";
+            foreach (KeyValuePair<string, Result[]> action in actions)
+            {
+                returnStr += "\t" + action.Key + "\n";
+                Result[] resultGroup = action.Value;
+                foreach (Result res in resultGroup)
+                {
+                    returnStr += "\t\t" + res.ToString() + "\n";
+                }
+            }
+            return returnStr;
         }
 
 

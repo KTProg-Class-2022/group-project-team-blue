@@ -36,5 +36,9 @@ namespace BlueTeamGroupProject
                 }
             }
         }
+        private string Inspect()
+        {
+            return ("Default Inspect Parent");
+        }
     }
 }
