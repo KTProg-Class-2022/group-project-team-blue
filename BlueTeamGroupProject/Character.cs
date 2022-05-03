@@ -111,6 +111,7 @@ namespace BlueTeamGroupProject
         public void nextTurn()
         {
             Result[] newAilments = new Result[10];
+            currentAilments = currentAilments.Where(x => x.Duration > 0).ToArray();
             foreach(Result Ailment in currentAilments)
             {
                 Result ail = Ailment.nextTurn();
@@ -118,6 +119,7 @@ namespace BlueTeamGroupProject
                 {
                     newAilments.Append(ail);
                 }
+                
                 
             }
             currentAilments = newAilments;

@@ -34,10 +34,14 @@ namespace BlueTeamGroupProject
                 _name = value;
             }
         }
-        public Weapon(string name, string[] command, Result[] result)
+        public Weapon(string name, string[] command, Result[][] result)
         {
             _name = name;
-            _attack = result;
+            for(int i = 0; i < command.Length; i++)
+            {
+                actions.Add(command[i], result[i]);
+            }
+            
             
         }
         public bool[] Utilize()
