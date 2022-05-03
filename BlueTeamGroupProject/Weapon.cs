@@ -34,10 +34,14 @@ namespace BlueTeamGroupProject
                 _name = value;
             }
         }
-        public Weapon(string name, Result[] result)
+        public Weapon(string name, string[] command, Result[][] result)
         {
             _name = name;
-            _attack = result;
+            for(int i = 0; i < command.Length; i++)
+            {
+                actions.Add(command[i], result[i]);
+            }
+            
             
         }
         public bool[] Utilize()
@@ -51,7 +55,21 @@ namespace BlueTeamGroupProject
         }
         public override string ToString()
         {
-            return Name;
+            return Inspect();
+        }
+        private string Inspect()
+        {
+            string returnStr = _name + "\n";
+            foreach (KeyValuePair<string, Result[]> action in actions)
+            {
+                returnStr += "\t" + action.Key + "\n";
+                Result[] resultGroup = action.Value;
+                foreach (Result res in resultGroup)
+                {
+                    returnStr += "\t\t" + res.ToString() + "\n";
+                }
+            }
+            return returnStr;
         }
 
 

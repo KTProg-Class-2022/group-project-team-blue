@@ -86,7 +86,50 @@ namespace BlueTeamGroupProject
         }
         public override string ToString()
         {
-            return ("Hello");
+            string ReturnStr = "";
+            switch (Target)
+            {
+                case Targets.Enemy:
+                    ReturnStr += "Enemy is";
+                    break;
+                case Targets.Self:
+                    ReturnStr += "You are";
+                    break;
+                case Targets.Both:
+                    ReturnStr += "Everyone is";
+                    break;
+                case Targets.None:
+                    ReturnStr += "No one is";
+                    break;
+            }
+            ReturnStr += " " + Effect + " with ";
+            switch (Affected)
+            {
+                case Character.Stats.HP:
+                    ReturnStr += "HP";
+                    break;
+                case Character.Stats.DMG:
+                    ReturnStr += "DMG";
+                    break;
+                case Character.Stats.ARMOR:
+                    ReturnStr += "ARMOR";
+                    break;
+                case Character.Stats.SANITY:
+                    ReturnStr += "SANITY";
+                    break;
+            }
+            if(Level > 0)
+            {
+                ReturnStr += " -";
+            }
+           else
+            {
+                ReturnStr += " +";
+            }
+            ReturnStr += Math.Abs(Level);
+            ReturnStr += " for " + Duration + " turn(s)\n";
+            ReturnStr += "Increasing: " + Increasing;
+            return (ReturnStr);
         }
 
 

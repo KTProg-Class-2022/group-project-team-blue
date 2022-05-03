@@ -21,11 +21,20 @@ namespace BlueTeamGroupProject
             get { return _desc; }
             set { _desc= value; }
         }
+        private Result[][] _results;
+        public Result[][] Results
+        {
+            get { return _results; }
+            set { _results = value; }
+        }
         //Dictionary<string, string> actions = new Dictionary<string, string>();
 
-        public Item(string name, string Desc, string[] Commands, Result[][] Results)
+        public Item(string name, string Desc, string[] Commands, Result[][] ResultsIn)
         {
             _name = name;
+            _desc = Desc;
+            _results = ResultsIn;
+
             if (Commands.Length != Results.Length)
             {
                 Console.WriteLine("The Results and Commands are unbalanced");
@@ -45,6 +54,20 @@ namespace BlueTeamGroupProject
         public override string ToString()
         {
             return Name;
+        }
+        private string Inspect()
+        {
+            string returnStr = _name + ": " + _desc + "\n";
+            foreach (KeyValuePair<string, Result[]> action in actions)
+            {
+                returnStr += "\t" + action.Key + "\n";
+                Result[] resultGroup = action.Value;
+                foreach (Result res in resultGroup)
+                {
+                    returnStr += "\t\t" + res.ToString() + "\n";
+                }
+            }
+            return returnStr;
         }
     }
 }
