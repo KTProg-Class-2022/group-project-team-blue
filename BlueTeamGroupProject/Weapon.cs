@@ -34,7 +34,7 @@ namespace BlueTeamGroupProject
                 _name = value;
             }
         }
-        public Weapon(string name, Result[] result)
+        public Weapon(string name, string[] command, Result[] result)
         {
             _name = name;
             _attack = result;
