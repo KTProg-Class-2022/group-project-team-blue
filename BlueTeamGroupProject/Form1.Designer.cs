@@ -36,8 +36,18 @@ namespace BlueTeamGroupProject
             this.outputConsole = new System.Windows.Forms.RichTextBox();
             this.RoomBox = new System.Windows.Forms.RichTextBox();
             this.myConsole = new System.Windows.Forms.RichTextBox();
+            this.URHere = new System.Windows.Forms.PictureBox();
+            this.URWest = new System.Windows.Forms.PictureBox();
+            this.URNorth = new System.Windows.Forms.PictureBox();
+            this.UREast = new System.Windows.Forms.PictureBox();
+            this.URSouth = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.myScreen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myInventory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.URHere)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.URWest)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.URNorth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UREast)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.URSouth)).BeginInit();
             this.SuspendLayout();
             // 
             // myConsoleOut
@@ -113,6 +123,55 @@ namespace BlueTeamGroupProject
             this.myConsole.Text = "";
             this.myConsole.KeyDown += new System.Windows.Forms.KeyEventHandler(this.myConsole_KeyDown_1);
             // 
+            // URHere
+            // 
+            this.URHere.BackColor = System.Drawing.Color.Maroon;
+            this.URHere.Location = new System.Drawing.Point(442, 52);
+            this.URHere.Name = "URHere";
+            this.URHere.Size = new System.Drawing.Size(41, 24);
+            this.URHere.TabIndex = 7;
+            this.URHere.TabStop = false;
+            // 
+            // URWest
+            // 
+            this.URWest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.URWest.Location = new System.Drawing.Point(395, 52);
+            this.URWest.Name = "URWest";
+            this.URWest.Size = new System.Drawing.Size(41, 24);
+            this.URWest.TabIndex = 8;
+            this.URWest.TabStop = false;
+            this.URWest.Visible = false;
+            // 
+            // URNorth
+            // 
+            this.URNorth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.URNorth.Location = new System.Drawing.Point(442, 22);
+            this.URNorth.Name = "URNorth";
+            this.URNorth.Size = new System.Drawing.Size(41, 24);
+            this.URNorth.TabIndex = 9;
+            this.URNorth.TabStop = false;
+            this.URNorth.Visible = false;
+            // 
+            // UREast
+            // 
+            this.UREast.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.UREast.Location = new System.Drawing.Point(489, 52);
+            this.UREast.Name = "UREast";
+            this.UREast.Size = new System.Drawing.Size(41, 24);
+            this.UREast.TabIndex = 10;
+            this.UREast.TabStop = false;
+            this.UREast.Visible = false;
+            // 
+            // URSouth
+            // 
+            this.URSouth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.URSouth.Location = new System.Drawing.Point(442, 82);
+            this.URSouth.Name = "URSouth";
+            this.URSouth.Size = new System.Drawing.Size(41, 24);
+            this.URSouth.TabIndex = 11;
+            this.URSouth.TabStop = false;
+            this.URSouth.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -122,6 +181,11 @@ namespace BlueTeamGroupProject
             this.BackgroundImage = global::BlueTeamGroupProject.Properties.Resources.borderBeta1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(820, 489);
+            this.Controls.Add(this.URSouth);
+            this.Controls.Add(this.UREast);
+            this.Controls.Add(this.URNorth);
+            this.Controls.Add(this.URWest);
+            this.Controls.Add(this.URHere);
             this.Controls.Add(this.myConsole);
             this.Controls.Add(this.RoomBox);
             this.Controls.Add(this.outputConsole);
@@ -134,6 +198,11 @@ namespace BlueTeamGroupProject
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.myScreen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.myInventory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.URHere)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.URWest)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.URNorth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UREast)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.URSouth)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -147,6 +216,11 @@ namespace BlueTeamGroupProject
         private System.Windows.Forms.RichTextBox outputConsole;
         private System.Windows.Forms.RichTextBox RoomBox;
         private System.Windows.Forms.RichTextBox myConsole;
+        private System.Windows.Forms.PictureBox URHere;
+        private System.Windows.Forms.PictureBox URWest;
+        private System.Windows.Forms.PictureBox URNorth;
+        private System.Windows.Forms.PictureBox UREast;
+        private System.Windows.Forms.PictureBox URSouth;
     }
 }
 

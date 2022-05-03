@@ -18,7 +18,7 @@ namespace BlueTeamGroupProject
         Character Player = new Character("Player Inventory");
         Character Enemy = new Character("Enemy Inventory");
         Room start = new Room(Room.RoomType.Normal, "Start", new List<object>(), "Its a bouncy Castle");
-        
+
         public Form1()
         {
             current = start;
@@ -30,7 +30,8 @@ namespace BlueTeamGroupProject
             actionList.Add("EQUIP", Equiped);
             Room secondRoom = new Room(Room.RoomType.Normal, "Second", new List<object>(), "This is the second room");
             start.addExit(Locations.Direction.North, secondRoom);
-
+            secondRoom.addExit(Locations.Direction.South, start);
+            miniMap();
             myConsoleOut.AppendText("Welcome! Click the screen to begin." + '\n');
 
 
@@ -39,7 +40,7 @@ namespace BlueTeamGroupProject
         private void myScreen_Click(object sender, EventArgs e)
         {
             start.ItemList = new Inventory("Start Items");
-            
+
 
 
             Result testResult = new Result();
@@ -75,16 +76,16 @@ namespace BlueTeamGroupProject
         private void myConsole_KeyDown(object sender, KeyEventArgs e)
         {
 
-           
+
         }
         private void sendCommand(string[] input)
         {
             string command = input[0].ToUpper();
-            foreach(string Action in actionList.Keys)
+            foreach (string Action in actionList.Keys)
             {
                 Console.WriteLine("Action: " + Action);
                 Console.WriteLine("Your Command: " + command);
-                if(command == Action)
+                if (command == Action)
                 {
                     Console.WriteLine("Command Matches Action");
                     actionList[Action](input);
@@ -97,15 +98,15 @@ namespace BlueTeamGroupProject
         }
         private System.Object getUseAction(string[] weapon)
         {
-            
-            if(weapon.Length <= 1)
+
+            if (weapon.Length <= 1)
             {
                 return 0;
             }
             string selection = string.Join(" ", weapon.Skip(1));
             myConsoleOut.AppendText("Wow thats a weapon!");
             myConsoleOut.AppendText("You Chose: " + selection);
-            foreach(object obj in Player.inv.getStuff())
+            foreach (object obj in Player.inv.getStuff())
             {
                 if (obj is Weapon)
                 {
@@ -116,7 +117,7 @@ namespace BlueTeamGroupProject
                         outputConsole.AppendText("\n" + wep.Name);
                     }
                 }
-                if(obj is Item)
+                if (obj is Item)
                 {
                     Item item = obj as Item;
                     Console.WriteLine(item.Name);
@@ -222,7 +223,8 @@ namespace BlueTeamGroupProject
             if (found)
             {
                 current.ItemList.removeStuff(ect);
-            } else
+            }
+            else
             {
                 myConsoleOut.AppendText("There's no such item in this room...\n");
             }
@@ -257,8 +259,9 @@ namespace BlueTeamGroupProject
                     if (current.getExit(Locations.Direction.North) != null)
                     {
                         current = current.getExit(Locations.Direction.North);
-                       
-                    } else
+
+                    }
+                    else
                     {
                         myConsoleOut.AppendText("There's a wall that way...\n");
                     }
@@ -268,7 +271,7 @@ namespace BlueTeamGroupProject
                     if (current.getExit(Locations.Direction.South) != null)
                     {
                         current = current.getExit(Locations.Direction.South);
-                       
+
                     }
                     else
                     {
@@ -280,7 +283,7 @@ namespace BlueTeamGroupProject
                     if (current.getExit(Locations.Direction.West) != null)
                     {
                         current = current.getExit(Locations.Direction.West);
-                        
+
                     }
                     else
                     {
@@ -292,7 +295,7 @@ namespace BlueTeamGroupProject
                     if (current.getExit(Locations.Direction.East) != null)
                     {
                         current = current.getExit(Locations.Direction.East);
-                        
+
                     }
                     else
                     {
@@ -301,6 +304,8 @@ namespace BlueTeamGroupProject
                     break;
             }
 
+            miniMap();
+
             return (true);
         }
         private System.Object Equiped(string[] weapon)
@@ -308,10 +313,10 @@ namespace BlueTeamGroupProject
             int displayedDmg = 0;
             if (Player.inv.getStuff().Contains(weapon) == true)
             {
-                Player.Equip((Weapon) Player.inv.getStuff()[ Player.inv.getStuff().IndexOf(weapon)]);
-                foreach(Result affect in Player.Equipped.Attack)
+                Player.Equip((Weapon)Player.inv.getStuff()[Player.inv.getStuff().IndexOf(weapon)]);
+                foreach (Result affect in Player.Equipped.Attack)
                 {
-                    if(affect.Affected == Character.Stats.HP)
+                    if (affect.Affected == Character.Stats.HP)
                     {
                         displayedDmg += affect.Level;
                         Player.setDMG(displayedDmg);
@@ -326,7 +331,7 @@ namespace BlueTeamGroupProject
             if (selected == "Enemy")
             {
                 myConsoleOut.AppendText("You swing your weapon at the " + selected[1] + " and dealt " + Player.getDMG() + " and defeated it!!! your prize is a smile :3 \n");
-                
+
             }
             else
             {
@@ -342,7 +347,7 @@ namespace BlueTeamGroupProject
             Result[][] doubleGroupingResults = { groupOfResults };
             if (e.KeyData == Keys.Enter && myConsole.Text != "")
             {
-               
+
                 sendCommand(myConsole.Text.Split(' '));
                 Weapon GODSTICK = new Weapon("Holy Stick of Sticks!!!!", groupOfResults);
                 Player.inv.addStuff(GODSTICK);
@@ -350,13 +355,84 @@ namespace BlueTeamGroupProject
 
                 Console.WriteLine("Enter Pressed");
                 myConsoleOut.AppendText(myConsole.Text + '\n');
-               
+
                 myConsole.Text = "";
                 e.Handled = true;
 
             }
-            
 
+
+        }
+
+        private void miniMap()
+        {
+            if (current.getExit(Locations.Direction.North) != current)
+            {
+                URNorth.Visible = true;
+                mapColor(current.getExit(Locations.Direction.North).Category, URNorth);
+            }
+            else
+            {
+                URNorth.Visible = false;
+            }
+
+            if (current.getExit(Locations.Direction.South) != current)
+            {
+                URSouth.Visible = true;
+                mapColor(current.getExit(Locations.Direction.South).Category, URSouth);
+
+            } else
+            {
+                URSouth.Visible = false;    
+            }
+
+            if (current.getExit(Locations.Direction.West) != current)
+            {
+                URWest.Visible = true;
+                mapColor(current.getExit(Locations.Direction.West).Category, URWest);
+
+            } else
+            {
+                URWest.Visible = false;
+            }
+
+            if (current.getExit(Locations.Direction.East) != current)
+            {
+                UREast.Visible = true;
+                mapColor(current.getExit(Locations.Direction.East).Category, UREast);
+
+
+            } else
+            {
+                UREast.Visible = false;
+            }
+        }
+
+        static void mapColor(Room.RoomType cat, PictureBox Box)
+        {
+            switch (cat)
+            {
+                case Room.RoomType.Static:
+                    Box.BackColor = Color.Gray;
+                    break;
+
+                case Room.RoomType.Normal:
+                    Box.BackColor = Color.LightCoral;
+                    break;
+
+                case Room.RoomType.Dungeon:
+                    Box.BackColor = Color.DarkGray;
+                    break;
+
+                case Room.RoomType.Travel:
+                    Box.BackColor = Color.LightBlue;
+                    break;
+
+                case Room.RoomType.Combat:
+                    Box.BackColor = Color.Red;
+                    break;
+
+            }
         }
     }
 }
